@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - DevConnect</title>
+    <meta name="description" content="Create and edit your developer profile">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="bg-animation">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+
+        <nav class="navbar">
+            <div class="navbar-content">
+                <a href="developer-dashboard.html" class="navbar-brand">
+                    <svg class="navbar-brand-icon" viewBox="0 0 100 100" fill="none">
+                        <path d="M30 20L50 40L70 20M30 80L50 60L70 80M20 30L40 50L20 70M80 30L60 50L80 70"
+                            stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea" />
+                                <stop offset="100%" style="stop-color:#764ba2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    DevConnect
+                </a>
+                <div class="navbar-actions">
+                    <button class="theme-toggle"></button>
+                    <button class="logout-btn" data-action="logout">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Edit Your Profile</h1>
+                <p class="page-subtitle">Showcase your skills and attract clients</p>
+            </div>
+
+            <form id="profileForm" class="profile-form">
+                <!-- Basic Information -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Basic Information</h2>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="Your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="roleType">Role Type *</label>
+                            <select id="roleType" name="roleType" required>
+                                <option value="">Select role type</option>
+                                <option value="Frontend">Frontend Developer</option>
+                                <option value="Backend">Backend Developer</option>
+                                <option value="Fullstack">Fullstack Developer</option>
+                                <option value="Mobile">Mobile Developer</option>
+                                <option value="DevOps">DevOps Engineer</option>
+                                <option value="UI/UX">UI/UX Designer</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="availability">Availability Status *</label>
+                            <select id="availability" name="availability" required>
+                                <option value="">Select availability</option>
+                                <option value="Available">Available</option>
+                                <option value="Busy">Busy</option>
+                                <option value="Not Available">Not Available</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bio">Bio / About *</label>
+                        <textarea id="bio" name="bio" rows="4" required
+                            placeholder="Tell clients about yourself, your experience, and what makes you unique..."></textarea>
+                        <small id="bioCount">0 / 500 characters</small>
+                    </div>
+                </div>
+
+                <!-- Skills -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Skills</h2>
+                        <p class="card-subtitle">Add your technical skills (press Enter to add)</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="skillInput">Add Skills *</label>
+                        <input type="text" id="skillInput" placeholder="e.g., React, Node.js, Python">
+                        <small>Press Enter or click Add to add a skill</small>
+                    </div>
+
+                    <div id="skillsContainer" class="skills-container"></div>
+                </div>
+
+                <!-- Projects -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Projects</h2>
+                        <p class="card-subtitle">Showcase your best work</p>
+                    </div>
+
+                    <div id="projectsContainer"></div>
+
+                    <button type="button" class="add-btn" id="addProjectBtn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="16" />
+                            <line x1="8" y1="12" x2="16" y2="12" />
+                        </svg>
+                        Add Project
+                    </button>
+                </div>
+
+                <!-- Links -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Links & Contact</h2>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="github">GitHub Profile</label>
+                            <input type="url" id="github" name="github" placeholder="https://github.com/username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="portfolio">Portfolio Website</label>
+                            <input type="url" id="portfolio" name="portfolio" placeholder="https://yourportfolio.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn Profile</label>
+                            <input type="url" id="linkedin" name="linkedin"
+                                placeholder="https://linkedin.com/in/username">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        Save Profile
+                        <span class="btn-arrow">→</span>
+                    </button>
+                    <a href="developer-dashboard.html" class="cancel-btn">Cancel</a>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/developer.js"></script>
+</body>
+
+</html>

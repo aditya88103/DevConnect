@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - DevConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="bg-animation">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+
+        <nav class="navbar">
+            <div class="navbar-content">
+                <a href="messages.html" class="navbar-brand">
+                    <svg class="navbar-brand-icon" viewBox="0 0 100 100" fill="none">
+                        <path d="M30 20L50 40L70 20M30 80L50 60L70 80M20 30L40 50L20 70M80 30L60 50L80 70"
+                            stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea" />
+                                <stop offset="100%" style="stop-color:#764ba2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    Back to Messages
+                </a>
+                <div class="navbar-actions">
+                    <button class="theme-toggle"></button>
+                    <button class="logout-btn" data-action="logout">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="chat-container">
+                <div class="chat-header">
+                    <img src="https://ui-avatars.com/api/?name=User&background=667eea&color=fff" alt="User"
+                        class="chat-avatar" id="chatUserAvatar">
+                    <div>
+                        <h3 id="chatUserName">User</h3>
+                        <p style="font-size: 0.9rem; color: var(--text-muted);">Active now</p>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <!-- Messages will be loaded here -->
+                </div>
+
+                <form class="chat-input-container" id="sendMessageForm">
+                    <input type="text" id="messageInput" placeholder="Type a message..." required autocomplete="off">
+                    <button type="submit" class="send-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/chat.js"></script>
+    <script>
+        requireAuth();
+    </script>
+</body>
+
+</html>

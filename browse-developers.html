@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Developers - DevConnect</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="bg-animation">
+            <div class="circle circle-1"></div>
+            <div class="circle circle-2"></div>
+            <div class="circle circle-3"></div>
+        </div>
+
+        <nav class="navbar">
+            <div class="navbar-content">
+                <a href="client-dashboard.html" class="navbar-brand">
+                    <svg class="navbar-brand-icon" viewBox="0 0 100 100" fill="none">
+                        <path d="M30 20L50 40L70 20M30 80L50 60L70 80M20 30L40 50L20 70M80 30L60 50L80 70"
+                            stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea" />
+                                <stop offset="100%" style="stop-color:#764ba2" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    DevConnect
+                </a>
+                <div class="navbar-actions">
+                    <button class="theme-toggle"></button>
+                    <button class="logout-btn" data-action="logout">Logout</button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h1 class="page-title">Browse Developers</h1>
+                <p class="page-subtitle">Find the perfect developer for your project</p>
+            </div>
+
+            <div class="search-filter-bar">
+                <div class="search-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search by name, skills, or bio...">
+                </div>
+
+                <div class="filter-group">
+                    <select id="roleFilter">
+                        <option value="">All Roles</option>
+                        <option value="Frontend">Frontend</option>
+                        <option value="Backend">Backend</option>
+                        <option value="Fullstack">Fullstack</option>
+                        <option value="Mobile">Mobile</option>
+                        <option value="DevOps">DevOps</option>
+                        <option value="UI/UX">UI/UX</option>
+                    </select>
+
+                    <select id="availabilityFilter">
+                        <option value="">All Availability</option>
+                        <option value="Available">Available</option>
+                        <option value="Busy">Busy</option>
+                        <option value="Not Available">Not Available</option>
+                    </select>
+
+                    <select id="sortBy">
+                        <option value="">Sort By</option>
+                        <option value="newest">Newest First</option>
+                        <option value="projects">Most Projects</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="developersContainer" class="grid grid-1"></div>
+        </main>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        requireAuth('client');
+
+        const user = getCurrentUser();
+        let currentFilters = {};
+
+        function renderDevelopers() {
+            const query = document.getElementById('searchInput').value;
+            const filters = {
+                roleType: document.getElementById('roleFilter').value,
+                availability: document.getElementById('availabilityFilter').value,
+                sortBy: document.getElementById('sortBy').value
+            };
+
+            const developers = searchDevelopers(query, filters);
+            const container = document.getElementById('developersContainer');
+
+            if (developers.length === 0) {
+                container.innerHTML = `
+                    <div class="card" style="text-align: center; padding: 3rem;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--text-muted);">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.35-4.35"/>
+                        </svg>
+                        <h3 style="margin-bottom: 0.5rem;">No developers found</h3>
+                        <p style="color: var(--text-secondary);">Try adjusting your search or filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            const developersHtml = developers.map(profile => {
+                const devUser = getUserById(profile.userId);
+                const isBookmarked = isBookmarked(user.id, profile.userId);
+                const avatar = profile.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile.name)}&background=667eea&color=fff`;
+
+                return `
+                    <div class="developer-card">
+                        <img src="${avatar}" alt="${profile.name}" class="developer-avatar">
+                        
+                        <div class="developer-info">
+                            <h3 class="developer-name">${profile.name}</h3>
+                            <p class="developer-role">${profile.roleType} Developer</p>
+                            <p class="developer-bio">${profile.bio}</p>
+                            <div class="developer-skills">
+                                ${profile.skills.slice(0, 5).map(skill => `
+                                    <div class="skill-tag">
+                                        <span>${skill}</span>
+                                    </div>
+                                `).join('')}
+                                ${profile.skills.length > 5 ? `<span style="color: var(--text-muted); font-size: 0.9rem;">+${profile.skills.length - 5} more</span>` : ''}
+                            </div>
+                        </div>
+
+                        <div class="developer-actions">
+                            <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" onclick="toggleBookmarkDev('${profile.userId}')" title="${isBookmarked ? 'Remove bookmark' : 'Bookmark'}">
+                                <svg viewBox="0 0 24 24" fill="${isBookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            </button>
+                            <a href="chat.html?user=${profile.userId}" class="profile-link-btn primary">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                                Message
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = developersHtml;
+        }
+
+        function toggleBookmarkDev(developerId) {
+            toggleBookmark(user.id, developerId);
+            renderDevelopers();
+        }
+
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', renderDevelopers);
+        document.getElementById('roleFilter').addEventListener('change', renderDevelopers);
+        document.getElementById('availabilityFilter').addEventListener('change', renderDevelopers);
+        document.getElementById('sortBy').addEventListener('change', renderDevelopers);
+
+        // Initial render
+        renderDevelopers();
+    </script>
+</body>
+
+</html>
