@@ -59,8 +59,8 @@ function redirectIfAuthenticated() {
     const user = getCurrentUser();
 
     if (user) {
-        if (user.role === 'developer') {
-            window.location.href = 'developer-dashboard.html';
+        if (user.role === 'freelancer') {
+            window.location.href = 'freelancer-dashboard.html';
         } else if (user.role === 'client') {
             window.location.href = 'client-dashboard.html';
         }

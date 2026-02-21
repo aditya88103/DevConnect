@@ -28,7 +28,7 @@ function loadConversationsList() {
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                 </svg>
                 <h3 style="margin-bottom: 0.5rem;">No messages yet</h3>
-                <p style="color: var(--text-secondary);">Start a conversation with a ${user.role === 'developer' ? 'client' : 'developer'}!</p>
+                <p style="color: var(--text-secondary);">Start a conversation with a ${user.role === 'freelancer' ? 'client' : 'freelancer'}!</p>
             </div>
         `;
         return;
@@ -143,8 +143,8 @@ function loadMessages(conversationId) {
 }
 
 function getUserAvatar(user) {
-    if (user.role === 'developer') {
-        const profile = getDeveloperProfile(user.id);
+    if (user.role === 'freelancer') {
+        const profile = getFreelancerProfile(user.id);
         if (profile && profile.photo) {
             return profile.photo;
         }

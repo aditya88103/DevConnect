@@ -403,7 +403,7 @@ body {
     transform: scale(1.1) rotate(5deg);
 }
 
-.developer-card .card-icon {
+.freelancer-card .card-icon {
     background: var(--primary-gradient);
 }
 
@@ -508,7 +508,7 @@ body {
     left: 100%;
 }
 
-.developer-btn {
+.freelancer-btn {
     background: var(--primary-gradient);
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
@@ -1434,7 +1434,7 @@ body {
     flex-shrink: 0;
 }
 
-/* ==================== DEVELOPER PROFILE VIEW ==================== */
+/* ==================== freelancer PROFILE VIEW ==================== */
 .profile-header {
     display: flex;
     gap: var(--spacing-xl);
@@ -1601,7 +1601,7 @@ body {
     color: var(--text-secondary);
 }
 
-/* ==================== BROWSE DEVELOPERS ==================== */
+/* ==================== BROWSE freelancerS ==================== */
 .search-filter-bar {
     display: flex;
     gap: var(--spacing-md);
@@ -1651,7 +1651,7 @@ body {
     cursor: pointer;
 }
 
-.developer-card {
+.freelancer-card {
     display: flex;
     gap: var(--spacing-lg);
     padding: var(--spacing-lg);
@@ -1663,13 +1663,13 @@ body {
     color: var(--text-primary);
 }
 
-.developer-card:hover {
+.freelancer-card:hover {
     transform: translateY(-4px);
     box-shadow: var(--shadow-md);
     border-color: var(--accent-purple);
 }
 
-.developer-avatar {
+.freelancer-avatar {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -1678,22 +1678,22 @@ body {
     flex-shrink: 0;
 }
 
-.developer-info {
+.freelancer-info {
     flex: 1;
 }
 
-.developer-name {
+.freelancer-name {
     font-size: 1.3rem;
     font-weight: 600;
     margin-bottom: 0.25rem;
 }
 
-.developer-role {
+.freelancer-role {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-sm);
 }
 
-.developer-bio {
+.freelancer-bio {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-sm);
     line-height: 1.5;
@@ -1703,18 +1703,18 @@ body {
     overflow: hidden;
 }
 
-.developer-skills {
+.freelancer-skills {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-xs);
 }
 
-.developer-skills .skill-tag {
+.freelancer-skills .skill-tag {
     padding: 0.25rem 0.75rem;
     font-size: 0.85rem;
 }
 
-.developer-actions {
+.freelancer-actions {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
@@ -2011,11 +2011,11 @@ body {
         text-align: center;
     }
 
-    .developer-card {
+    .freelancer-card {
         flex-direction: column;
     }
 
-    .developer-actions {
+    .freelancer-actions {
         flex-direction: row;
     }
 
@@ -2099,4 +2099,115 @@ body {
     border-color: var(--accent-purple);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
+}
+
+/* ==================== MODAL ==================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: var(--bg-card);
+    width: 90%;
+    max-width: 700px;
+    max-height: 90vh;
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    position: relative;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--glass-border);
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--text-primary);
+}
+
+.modal-header {
+    margin-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--spacing-md);
+}
+
+.modal-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.modal-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.modal-body {
+    margin-bottom: var(--spacing-xl);
+}
+
+.modal-footer {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: flex-end;
+}
+
+.detail-row {
+    margin-bottom: var(--spacing-md);
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.detail-value {
+    color: var(--text-secondary);
+}
+
+.project-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: var(--primary-gradient);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
 }

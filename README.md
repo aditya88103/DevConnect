@@ -1,6 +1,6 @@
-# 🚀 DevConnect - Developer & Client Marketplace Platform
+# 🚀 DevConnect - Freelancer & Client Marketplace Platform
 
-A modern, responsive web platform connecting talented developers with clients seeking quality development services.
+A modern, responsive web platform connecting talented freelancers with clients seeking quality development services.
 
 ![DevConnect](https://img.shields.io/badge/DevConnect-Platform-purple?style=for-the-badge)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
@@ -18,7 +18,7 @@ A modern, responsive web platform connecting talented developers with clients se
 
 ### 👥 **Dual User Roles**
 
-#### For Developers:
+#### For Freelancers:
 - ✅ Create professional profiles
 - ✅ Showcase skills and projects
 - ✅ Get discovered by clients
@@ -26,14 +26,14 @@ A modern, responsive web platform connecting talented developers with clients se
 - ✅ Direct messaging with clients
 
 #### For Clients/Project Owners:
-- ✅ Browse talented developers
+- ✅ Browse talented freelancers
 - ✅ Post project requirements
 - ✅ Filter by skills and budget
 - ✅ Real-time messaging
 - ✅ Manage projects
 
 ### 🔐 **Authentication System**
-- User registration (Developer/Client)
+- User registration (Freelancer/Client)
 - Secure login
 - Role-based dashboards
 - Local storage management
@@ -55,12 +55,12 @@ web/
 ├── index.html                      # Landing page
 ├── signup.html                     # User registration
 ├── login.html                      # User login
-├── developer-dashboard.html        # Developer dashboard
-├── developer-profile.html          # Developer profile view
-├── developer-profile-form.html     # Profile creation/edit
+├── freelancer-dashboard.html       # Freelancer dashboard
+├── freelancer-profile.html         # Freelancer profile view
+├── freelancer-profile-form.html    # Profile creation/edit
 ├── client-dashboard.html           # Client dashboard
 ├── client-requirement-form.html    # Post requirements
-├── browse-developers.html          # Browse developers
+├── browse-freelancers.html         # Browse freelancers
 ├── messages.html                   # Messaging system
 ├── chat.html                       # Individual chat
 ├── settings.html                   # User settings
@@ -72,7 +72,7 @@ web/
 │   ├── auth.js                    # Authentication logic
 │   ├── storage.js                 # Local storage management
 │   ├── theme.js                   # Theme switching
-│   ├── developer.js               # Developer functionality
+│   ├── freelancer.js              # Freelancer functionality
 │   ├── client.js                  # Client functionality
 │   └── chat.js                    # Chat functionality
 └── assets/
@@ -108,8 +108,8 @@ python -m http.server 8000
 
 ## 💻 Usage
 
-### For Developers:
-1. Click **"Create Developer Account"** on landing page
+### For Freelancers:
+1. Click **"Create Freelancer Account"** on landing page
 2. Fill in your details
 3. Complete your profile with skills and projects
 4. Start receiving project offers!
@@ -117,8 +117,8 @@ python -m http.server 8000
 ### For Clients:
 1. Click **"Create Client Account"** on landing page
 2. Fill in your details
-3. Browse developers or post requirements
-4. Connect with developers via messaging
+3. Browse freelancers or post requirements
+4. Connect with freelancers via messaging
 
 ## 🎨 Design Features
 
@@ -225,6 +225,6 @@ For questions or feedback, please reach out:
 
 ---
 
-**Made with ❤️ for developers and clients worldwide**
+**Made with ❤️ for freelancers and clients worldwide**
 
 ⭐ Star this repo if you find it helpful!

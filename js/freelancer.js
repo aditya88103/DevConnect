@@ -1,4 +1,4 @@
-// ==================== DEVELOPER PROFILE FORM LOGIC ====================
+// ==================== FREELANCER PROFILE FORM LOGIC ====================
 
 document.addEventListener('DOMContentLoaded', function () {
     // Check if we're on the profile form page
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let projects = [];
 
     // Load existing profile if any
-    const existingProfile = getDeveloperProfile(user.id);
+    const existingProfile = getFreelancerProfile(user.id);
     if (existingProfile) {
         loadExistingProfile(existingProfile);
     }
@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Save profile
-        saveDeveloperProfile(user.id, profileData);
+        saveFreelancerProfile(user.id, profileData);
 
         // Update user name if changed
         if (profileData.name !== user.name) {
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         alert('Profile saved successfully!');
-        window.location.href = 'developer-dashboard.html';
+        window.location.href = 'freelancer-dashboard.html';
     });
 
     // Initialize

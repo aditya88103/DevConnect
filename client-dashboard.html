@@ -48,14 +48,14 @@
         <main class="main-content">
             <div class="page-header">
                 <h1 class="page-title">Welcome, <span id="userName">Client</span>! 👋</h1>
-                <p class="page-subtitle">Find the perfect developer for your project</p>
+                <p class="page-subtitle">Find the perfect freelancer for your project</p>
             </div>
 
             <div class="grid grid-3" style="margin-bottom: 2rem;">
                 <div class="card"
                     style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none;">
-                    <h3 class="card-title">Total Developers</h3>
-                    <div style="font-size: 2.5rem; font-weight: 700;" id="totalDevelopers">0</div>
+                    <h3 class="card-title">Total Freelancers</h3>
+                    <div style="font-size: 2.5rem; font-weight: 700;" id="totalFreelancers">0</div>
                     <small style="opacity: 0.9;">Available on platform</small>
                 </div>
 
@@ -63,7 +63,7 @@
                     style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border: none;">
                     <h3 class="card-title">Bookmarked</h3>
                     <div style="font-size: 2.5rem; font-weight: 700;" id="bookmarkedCount">0</div>
-                    <small style="opacity: 0.9;">Saved developers</small>
+                    <small style="opacity: 0.9;">Saved freelancers</small>
                 </div>
 
                 <div class="card"
@@ -79,13 +79,13 @@
                     <h2 class="card-title">Quick Actions</h2>
                 </div>
                 <div class="grid grid-3">
-                    <a href="browse-developers.html" class="action-card">
+                    <a href="browse-freelancers.html" class="action-card">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="8" />
                             <path d="m21 21-4.35-4.35" />
                         </svg>
-                        <h3>Browse Developers</h3>
-                        <p>Find skilled developers</p>
+                        <h3>Browse Freelancers</h3>
+                        <p>Find skilled freelancers</p>
                     </a>
 
                     <a href="client-requirement-form.html" class="action-card">
@@ -104,7 +104,7 @@
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
                         <h3>Messages</h3>
-                        <p>Chat with developers</p>
+                        <p>Chat with freelancers</p>
                     </a>
                 </div>
             </div>
@@ -129,8 +129,8 @@
         document.getElementById('userName').textContent = user.name;
 
         // Update stats
-        const allDevelopers = getDeveloperProfiles();
-        document.getElementById('totalDevelopers').textContent = allDevelopers.length;
+        const allFreelancers = getFreelancerProfiles();
+        document.getElementById('totalFreelancers').textContent = allFreelancers.length;
 
         const bookmarks = getBookmarks(user.id);
         document.getElementById('bookmarkedCount').textContent = bookmarks.length;

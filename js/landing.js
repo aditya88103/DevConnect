@@ -126,7 +126,7 @@ if (ctaButton) {
 
 // ==================== CONSOLE MESSAGE ====================
 console.log('%c🚀 DevConnect Platform', 'font-size: 20px; font-weight: bold; color: #667eea;');
-console.log('%cConnecting developers with real projects!', 'font-size: 14px; color: #764ba2;');
+console.log('%cConnecting freelancers with real projects!', 'font-size: 14px; color: #764ba2;');
 
 // ==================== PERFORMANCE OPTIMIZATION ====================
 // Debounce function for scroll events

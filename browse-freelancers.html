@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Browse Developers - DevConnect</title>
+    <title>Browse Freelancers - DevConnect</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -40,8 +40,8 @@
 
         <main class="main-content">
             <div class="page-header">
-                <h1 class="page-title">Browse Developers</h1>
-                <p class="page-subtitle">Find the perfect developer for your project</p>
+                <h1 class="page-title">Browse Freelancers</h1>
+                <p class="page-subtitle">Find the perfect freelancer for your project</p>
             </div>
 
             <div class="search-filter-bar">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div id="developersContainer" class="grid grid-1"></div>
+            <div id="freelancersContainer" class="grid grid-1"></div>
         </main>
     </div>
 
@@ -92,7 +92,7 @@
         const user = getCurrentUser();
         let currentFilters = {};
 
-        function renderDevelopers() {
+        function renderFreelancers() {
             const query = document.getElementById('searchInput').value;
             const filters = {
                 roleType: document.getElementById('roleFilter').value,
@@ -100,37 +100,37 @@
                 sortBy: document.getElementById('sortBy').value
             };
 
-            const developers = searchDevelopers(query, filters);
-            const container = document.getElementById('developersContainer');
+            const freelancers = searchFreelancers(query, filters);
+            const container = document.getElementById('freelancersContainer');
 
-            if (developers.length === 0) {
+            if (freelancers.length === 0) {
                 container.innerHTML = `
                     <div class="card" style="text-align: center; padding: 3rem;">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 64px; height: 64px; margin: 0 auto 1rem; color: var(--text-muted);">
                             <circle cx="11" cy="11" r="8"/>
                             <path d="m21 21-4.35-4.35"/>
                         </svg>
-                        <h3 style="margin-bottom: 0.5rem;">No developers found</h3>
+                        <h3 style="margin-bottom: 0.5rem;">No freelancers found</h3>
                         <p style="color: var(--text-secondary);">Try adjusting your search or filters</p>
                     </div>
                 `;
                 return;
             }
 
-            const developersHtml = developers.map(profile => {
+            const freelancersHtml = freelancers.map(profile => {
                 const devUser = getUserById(profile.userId);
-                const isBookmarked = isBookmarked(user.id, profile.userId);
+                const isUserBookmarked = isBookmarked(user.id, profile.userId);
                 const avatar = profile.photo || `https://ui-avatars.com/api/?name=${encodeURIComponent(profile.name)}&background=667eea&color=fff`;
 
                 return `
-                    <div class="developer-card">
-                        <img src="${avatar}" alt="${profile.name}" class="developer-avatar">
+                    <div class="freelancer-card">
+                        <img src="${avatar}" alt="${profile.name}" class="freelancer-avatar">
                         
-                        <div class="developer-info">
-                            <h3 class="developer-name">${profile.name}</h3>
-                            <p class="developer-role">${profile.roleType} Developer</p>
-                            <p class="developer-bio">${profile.bio}</p>
-                            <div class="developer-skills">
+                        <div class="freelancer-info">
+                            <h3 class="freelancer-name">${profile.name}</h3>
+                            <p class="freelancer-role">${profile.roleType} Freelancer</p>
+                            <p class="freelancer-bio">${profile.bio}</p>
+                            <div class="freelancer-skills">
                                 ${profile.skills.slice(0, 5).map(skill => `
                                     <div class="skill-tag">
                                         <span>${skill}</span>
@@ -140,9 +140,9 @@
                             </div>
                         </div>
 
-                        <div class="developer-actions">
-                            <button class="bookmark-btn ${isBookmarked ? 'bookmarked' : ''}" onclick="toggleBookmarkDev('${profile.userId}')" title="${isBookmarked ? 'Remove bookmark' : 'Bookmark'}">
-                                <svg viewBox="0 0 24 24" fill="${isBookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
+                        <div class="freelancer-actions">
+                            <button class="bookmark-btn ${isUserBookmarked ? 'bookmarked' : ''}" onclick="toggleBookmarkFreelancer('${profile.userId}')" title="${isUserBookmarked ? 'Remove bookmark' : 'Bookmark'}">
+                                <svg viewBox="0 0 24 24" fill="${isUserBookmarked ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2">
                                     <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
                                 </svg>
                             </button>
@@ -157,22 +157,22 @@
                 `;
             }).join('');
 
-            container.innerHTML = developersHtml;
+            container.innerHTML = freelancersHtml;
         }
 
-        function toggleBookmarkDev(developerId) {
-            toggleBookmark(user.id, developerId);
-            renderDevelopers();
+        function toggleBookmarkFreelancer(freelancerId) {
+            toggleBookmark(user.id, freelancerId);
+            renderFreelancers();
         }
 
         // Event listeners
-        document.getElementById('searchInput').addEventListener('input', renderDevelopers);
-        document.getElementById('roleFilter').addEventListener('change', renderDevelopers);
-        document.getElementById('availabilityFilter').addEventListener('change', renderDevelopers);
-        document.getElementById('sortBy').addEventListener('change', renderDevelopers);
+        document.getElementById('searchInput').addEventListener('input', renderFreelancers);
+        document.getElementById('roleFilter').addEventListener('change', renderFreelancers);
+        document.getElementById('availabilityFilter').addEventListener('change', renderFreelancers);
+        document.getElementById('sortBy').addEventListener('change', renderFreelancers);
 
         // Initial render
-        renderDevelopers();
+        renderFreelancers();
     </script>
 </body>
 

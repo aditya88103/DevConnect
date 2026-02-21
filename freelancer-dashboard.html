@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Dashboard - DevConnect</title>
-    <meta name="description" content="Manage your developer profile and projects">
+    <title>Freelancer Dashboard - DevConnect</title>
+    <meta name="description" content="Manage your freelancer profile and projects">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -44,7 +44,7 @@
                 </button>
 
                 <ul class="navbar-menu">
-                    <li><a href="developer-dashboard.html" class="active">
+                    <li><a href="freelancer-dashboard.html" class="active">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="3" width="7" height="7" />
                                 <rect x="14" y="3" width="7" height="7" />
@@ -53,7 +53,7 @@
                             </svg>
                             Dashboard
                         </a></li>
-                    <li><a href="developer-profile.html">
+                    <li><a href="freelancer-profile.html">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
                                 <circle cx="12" cy="7" r="4" />
@@ -92,7 +92,7 @@
                     </button>
 
                     <div class="user-menu">
-                        <img src="https://ui-avatars.com/api/?name=Developer&background=667eea&color=fff" alt="User"
+                        <img src="https://ui-avatars.com/api/?name=Freelancer&background=667eea&color=fff" alt="User"
                             class="user-avatar" id="userAvatar">
                     </div>
 
@@ -104,7 +104,7 @@
         <!-- Main Content -->
         <main class="main-content">
             <div class="page-header">
-                <h1 class="page-title">Welcome back, <span id="userName">Developer</span>! 👋</h1>
+                <h1 class="page-title">Welcome back, <span id="userName">Freelancer</span>! 👋</h1>
                 <p class="page-subtitle">Here's what's happening with your profile today</p>
             </div>
 
@@ -154,7 +154,7 @@
                     <p class="card-subtitle">Manage your profile and settings</p>
                 </div>
                 <div class="grid grid-3">
-                    <a href="developer-profile-form.html" class="action-card">
+                    <a href="freelancer-profile-form.html" class="action-card">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
@@ -171,7 +171,7 @@
                         <p>Check client inquiries</p>
                     </a>
 
-                    <a href="developer-profile.html" class="action-card">
+                    <a href="freelancer-profile.html" class="action-card">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="12" cy="12" r="10" />
                             <path d="M12 16v-4m0-4h.01" />
@@ -179,6 +179,22 @@
                         <h3>View Public Profile</h3>
                         <p>See how clients see you</p>
                     </a>
+                </div>
+            </div>
+
+            <!-- Available Projects Section -->
+            <div class="card" style="margin-bottom: 2rem;">
+                <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h2 class="card-title">Available Projects</h2>
+                        <p class="card-subtitle">Browse requirements posted by clients</p>
+                    </div>
+                </div>
+                <div id="projectsGrid" class="grid grid-3">
+                    <!-- Projects will be loaded here -->
+                    <div class="loading-state" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                        <p>Loading projects...</p>
+                    </div>
                 </div>
             </div>
 
@@ -199,17 +215,68 @@
         </main>
     </div>
 
+    <!-- Project Detail Modal -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <div id="modalProjectType" class="project-badge"></div>
+                <h2 class="modal-title" id="modalTitle">Project Title</h2>
+                <div class="modal-subtitle">Posted by <span id="modalClientName">Client Name</span> • <span
+                        id="modalDate">Date</span></div>
+            </div>
+            <div class="modal-body">
+                <div class="grid grid-2" style="margin-bottom: 1.5rem;">
+                    <div class="detail-row">
+                        <span class="detail-label">Budget</span>
+                        <span class="detail-value" id="modalBudget"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Deadline</span>
+                        <span class="detail-value" id="modalDeadline"></span>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Description</span>
+                    <p class="detail-value" id="modalDescription" style="white-space: pre-wrap;"></p>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Key Features</span>
+                    <p class="detail-value" id="modalFeatures" style="white-space: pre-wrap;"></p>
+                </div>
+                <div class="detail-row" id="modalNotesRow">
+                    <span class="detail-label">Additional Notes</span>
+                    <p class="detail-value" id="modalNotes" style="white-space: pre-wrap;"></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="profile-link-btn secondary" id="closeModalBtn">Close</button>
+                <button class="profile-link-btn primary" id="messageOwnerBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                    </svg>
+                    Message Owner
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/auth.js"></script>
     <script src="js/storage.js"></script>
     <script src="js/theme.js"></script>
-    <script src="js/developer.js"></script>
+    <script src="js/freelancer.js"></script>
     <script>
-        // Require developer authentication
-        requireAuth('developer');
+        // Require freelancer authentication
+        requireAuth('freelancer');
 
         // Load dashboard data
         const user = getCurrentUser();
-        const profile = getDeveloperProfile(user.id);
+        const profile = getFreelancerProfile(user.id);
 
         // Update user name
         document.getElementById('userName').textContent = user.name;
@@ -261,8 +328,106 @@
             }
         } else {
             // No profile yet, redirect to form
-            window.location.href = 'developer-profile-form.html';
+            window.location.href = 'freelancer-profile-form.html';
         }
+
+        // --- Available Projects Logic ---
+
+        function loadAvailableProjects() {
+            const requirements = getClientRequirements();
+            const projectsGrid = document.getElementById('projectsGrid');
+
+            if (!requirements || requirements.length === 0) {
+                projectsGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
+                        <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1" style="margin-bottom: 1rem; opacity: 0.5;">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                        <h3>No projects available yet</h3>
+                        <p>Check back later for new opportunities!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            // Sort by latest
+            requirements.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            projectsGrid.innerHTML = requirements.map(req => {
+                const client = getUserById(req.userId);
+                const date = new Date(req.createdAt).toLocaleDateString();
+
+                return `
+                    <div class="card project-card">
+                        <div class="project-badge">${req.projectType}</div>
+                        <h3 style="margin-bottom: 0.5rem;">${req.projectType} for ${client ? client.name : 'Client'}</h3>
+                        <p style="font-size: 0.9rem; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                            ${req.description}
+                        </p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                            <span style="font-weight: 600; color: var(--accent-purple);">${req.budget}</span>
+                            <button class="profile-link-btn primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="showProjectDetails('${req.id}')">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Modal Logic
+        const modal = document.getElementById('projectModal');
+        let currentProjectOwnerId = null;
+
+        window.showProjectDetails = function (projectId) {
+            const requirements = getClientRequirements();
+            const project = requirements.find(r => r.id === projectId);
+            if (!project) return;
+
+            const client = getUserById(project.userId);
+            currentProjectOwnerId = project.userId;
+
+            document.getElementById('modalProjectType').textContent = project.projectType;
+            document.getElementById('modalTitle').textContent = `${project.projectType} Project`;
+            document.getElementById('modalClientName').textContent = client ? client.name : 'Client';
+            document.getElementById('modalDate').textContent = new Date(project.createdAt).toLocaleDateString();
+            document.getElementById('modalBudget').textContent = project.budget;
+            document.getElementById('modalDeadline').textContent = new Date(project.deadline).toLocaleDateString();
+            document.getElementById('modalDescription').textContent = project.description;
+            document.getElementById('modalFeatures').textContent = project.features;
+
+            if (project.notes) {
+                document.getElementById('modalNotes').textContent = project.notes;
+                document.getElementById('modalNotesRow').style.display = 'block';
+            } else {
+                document.getElementById('modalNotesRow').style.display = 'none';
+            }
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('closeModal').onclick = closeModal;
+        document.getElementById('closeModalBtn').onclick = closeModal;
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        };
+
+        document.getElementById('messageOwnerBtn').onclick = function () {
+            if (currentProjectOwnerId) {
+                window.location.href = `chat.html?user=${currentProjectOwnerId}`;
+            }
+        };
+
+        // Initialize projects
+        loadAvailableProjects();
     </script>
 </body>
 

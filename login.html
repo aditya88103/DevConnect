@@ -30,11 +30,11 @@
             </div>
 
             <div class="role-selector">
-                <button class="role-tab active" data-role="developer">
+                <button class="role-tab active" data-role="freelancer">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M16 18L22 12L16 6M8 6L2 12L8 18" />
                     </svg>
-                    Developer
+                    Freelancer
                 </button>
                 <button class="role-tab" data-role="client">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -125,8 +125,8 @@
             login(user);
 
             // Redirect based on role
-            if (activeRole === 'developer') {
-                window.location.href = 'developer-dashboard.html';
+            if (activeRole === 'freelancer') {
+                window.location.href = 'freelancer-dashboard.html';
             } else {
                 window.location.href = 'client-dashboard.html';
             }
