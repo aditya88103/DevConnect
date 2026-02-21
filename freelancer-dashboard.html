@@ -96,7 +96,23 @@
                             class="user-avatar" id="userAvatar">
                     </div>
 
-                    <button class="logout-btn" data-action="logout">Logout</button>
+                    <button class="logoutButton" data-action="logout-premium">
+                        <div class="doorway">
+                            <div class="door">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                </svg>
+                            </div>
+                            <div class="figure">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 5.9a2.1 2.1 0 110-4.2 2.1 2.1 0 010 4.2zm1.2 4.7l.5 7.7c0 .6-.4 1.2-1.1 1.2h-.1c-.6 0-1.1-.4-1.1-1.1L11 11H9V9h5c.6 0 1 .4 1 1v.6zM8 20.8L7.1 15 5.5 15l.6 6c.1.4.4.7.9.7h.1c.5 0 .9-.4.9-.9z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="button-text">Logout</span>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -168,7 +184,7 @@
                             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                         </svg>
                         <h3>View Messages</h3>
-                        <p>Check client inquiries</p>
+                        <p>Check Project Owner inquiries</p>
                     </a>
 
                     <a href="freelancer-profile.html" class="action-card">
@@ -177,7 +193,7 @@
                             <path d="M12 16v-4m0-4h.01" />
                         </svg>
                         <h3>View Public Profile</h3>
-                        <p>See how clients see you</p>
+                        <p>See how project owners see you</p>
                     </a>
                 </div>
             </div>
@@ -187,7 +203,7 @@
                 <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
                         <h2 class="card-title">Available Projects</h2>
-                        <p class="card-subtitle">Browse requirements posted by clients</p>
+                        <p class="card-subtitle">Browse requirements posted by project owners</p>
                     </div>
                 </div>
                 <div id="projectsGrid" class="grid grid-3">
@@ -227,7 +243,7 @@
             <div class="modal-header">
                 <div id="modalProjectType" class="project-badge"></div>
                 <h2 class="modal-title" id="modalTitle">Project Title</h2>
-                <div class="modal-subtitle">Posted by <span id="modalClientName">Client Name</span> • <span
+                <div class="modal-subtitle">Posted by <span id="modalClientName">Owner Name</span> • <span
                         id="modalDate">Date</span></div>
             </div>
             <div class="modal-body">
@@ -360,7 +376,7 @@
                 return `
                     <div class="card project-card">
                         <div class="project-badge">${req.projectType}</div>
-                        <h3 style="margin-bottom: 0.5rem;">${req.projectType} for ${client ? client.name : 'Client'}</h3>
+                        <h3 style="margin-bottom: 0.5rem;">${req.projectType} for ${client ? client.name : 'Owner'}</h3>
                         <p style="font-size: 0.9rem; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
                             ${req.description}
                         </p>
@@ -389,7 +405,7 @@
 
             document.getElementById('modalProjectType').textContent = project.projectType;
             document.getElementById('modalTitle').textContent = `${project.projectType} Project`;
-            document.getElementById('modalClientName').textContent = client ? client.name : 'Client';
+            document.getElementById('modalClientName').textContent = client ? client.name : 'Owner';
             document.getElementById('modalDate').textContent = new Date(project.createdAt).toLocaleDateString();
             document.getElementById('modalBudget').textContent = project.budget;
             document.getElementById('modalDeadline').textContent = new Date(project.deadline).toLocaleDateString();

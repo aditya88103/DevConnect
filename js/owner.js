@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
             addClientRequirement(user.id, requirementData);
 
             alert('Requirement posted successfully!');
-            window.location.href = 'client-dashboard.html';
+            window.location.href = 'owner-dashboard.html';
         });
     }
 });

@@ -104,20 +104,20 @@ function calculateProfileCompletion(profile) {
     return Math.round((completed / fields.length) * 100);
 }
 
-// ==================== CLIENT REQUIREMENTS ====================
+// ==================== PROJECT OWNER REQUIREMENTS ====================
 
-// Get all client requirements
+// Get all owner requirements
 function getClientRequirements() {
     const requirements = localStorage.getItem('devconnect_client_requirements');
     return requirements ? JSON.parse(requirements) : [];
 }
 
-// Save client requirements
+// Save owner requirements
 function saveClientRequirements(requirements) {
     localStorage.setItem('devconnect_client_requirements', JSON.stringify(requirements));
 }
 
-// Get requirements by client ID
+// Get requirements by owner ID
 function getClientRequirementsByUser(userId) {
     const requirements = getClientRequirements();
     return requirements.filter(r => r.userId === userId);
@@ -378,7 +378,7 @@ function initializeDemoData() {
         {
             id: 'demo-client-1',
             name: 'Emily Davis',
-            email: 'emily@example.com',
+            email: 'emily@owner.com',
             password: 'demo123',
             role: 'client',
             createdAt: new Date().toISOString()
@@ -433,7 +433,7 @@ function initializeDemoData() {
 
     saveFreelancerProfiles(demoProfiles);
 
-    // Create demo client requirements
+    // Create demo project owner requirements
     const demoRequirements = [
         {
             id: 'demo-req-1',

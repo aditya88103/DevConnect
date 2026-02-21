@@ -6,9 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevConnect - Connect Freelancers with Real Projects</title>
     <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/premium-global.css">
 </head>
 
 <body>
+    <div class="scroll-progress"></div>
+    <div class="cursor-glow"></div>
+    <div class="premium-bg-decor">
+        <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <circle cx="100" cy="100" r="150" fill="url(#grad1)" opacity="0.1" />
+            <circle cx="900" cy="800" r="200" fill="url(#grad2)" opacity="0.1" />
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#667eea" />
+                    <stop offset="100%" style="stop-color:transparent" />
+                </linearGradient>
+                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#764ba2" />
+                    <stop offset="100%" style="stop-color:transparent" />
+                </linearGradient>
+            </defs>
+        </svg>
+    </div>
     <!-- Sticky Navbar -->
     <nav class="navbar">
         <div class="nav-container">
@@ -45,11 +64,14 @@
             <div class="particle"></div>
         </div>
 
-        <div class="hero-content">
-            <h1 class="hero-title">Connect Freelancers with Real Projects</h1>
+        <div class="hero-content reveal">
+            <h1 class="hero-title typing-text" data-text="Connect Freelancers with Real Projects">Connect Freelancers
+                with Real Projects</h1>
             <p class="hero-subtitle">A platform where freelancers and professionals meet Project Owners to build
                 websites, apps, and more.</p>
-            <a href="#role-selection" class="cta-button">Explore Platform</a>
+            <div class="cta-group">
+                <a href="#role-selection" class="cta-button liquid-btn magnetic-btn">Explore Platform</a>
+            </div>
         </div>
     </section>
 
@@ -57,7 +79,7 @@
     <section id="features" class="features-section">
         <h2 class="section-title">Why Choose DevConnect?</h2>
         <div class="features-grid">
-            <div class="feature-card fade-in">
+            <div class="feature-card reveal glass-glow">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -107,7 +129,7 @@
     <section id="role-selection" class="role-section">
         <h2 class="section-title">Choose Your Role</h2>
         <div class="role-cards-container">
-            <div class="role-card freelancer-role fade-in">
+            <div class="role-card freelancer-role reveal glass-glow">
                 <div class="role-badge">For Freelancers</div>
                 <div class="role-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -118,12 +140,12 @@
                 <p>Show your skills, projects, and portfolio.</p>
                 <p>Get contacted by Project Owners.</p>
                 <div class="role-buttons">
-                    <a href="signup.html?role=freelancer" class="primary-btn">Create Freelancer Account</a>
-                    <a href="login.html?role=freelancer" class="secondary-btn">Freelancer Login</a>
+                    <a href="freelancer-auth.html?action=signup" class="primary-btn">Create Freelancer Account</a>
+                    <a href="freelancer-auth.html" class="secondary-btn">Freelancer Login</a>
                 </div>
             </div>
 
-            <div class="role-card owner-role fade-in">
+            <div class="role-card owner-role reveal glass-glow">
                 <div class="role-badge">For Project Owners</div>
                 <div class="role-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -133,13 +155,58 @@
                         <path d="M16 3.13a4 4 0 0 1 0 7.75" />
                     </svg>
                 </div>
-                <h3>Project Owner / Client</h3>
+                <h3>Project Owner</h3>
                 <p>Post your requirement and find skilled freelancers.</p>
                 <p>Chat and finalize your project easily.</p>
                 <div class="role-buttons">
-                    <a href="signup.html?role=client" class="primary-btn">Create Client Account</a>
-                    <a href="login.html?role=client" class="secondary-btn">Client Login</a>
+                    <a href="owner-auth.html?action=signup" class="primary-btn">Create Owner Account</a>
+                    <a href="owner-auth.html" class="secondary-btn">Owner Login</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Grid (New Detail Section) -->
+    <section class="stats-grid-section reveal">
+        <div class="stats-grid">
+            <div class="stat-box">
+                <h4 class="stat-count">500+</h4>
+                <p>Expert Freelancers</p>
+            </div>
+            <div class="stat-box">
+                <h4 class="stat-count">200+</h4>
+                <p>Live Projects</p>
+            </div>
+            <div class="stat-box">
+                <h4 class="stat-count">98%</h4>
+                <p>Satisfaction Rate</p>
+            </div>
+            <div class="stat-box">
+                <h4 class="stat-count">24/7</h4>
+                <p>Active Support</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Benefits Section -->
+    <section class="benefits-section reveal">
+        <h2 class="section-title">Everything You Need to Scale</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card glass-glow">
+                <div class="benefit-icon">🚀</div>
+                <h3>Fast Turnaround</h3>
+                <p>Get your project started within hours, not weeks. Our matching algorithm finds the best fit
+                    instantly.</p>
+            </div>
+            <div class="benefit-card glass-glow">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Secure Collaboration</h3>
+                <p>Built-in chat and project tracking ensure that communication and milestones are always clear.</p>
+            </div>
+            <div class="benefit-card glass-glow">
+                <div class="benefit-icon">💎</div>
+                <h3>Top Quality</h3>
+                <p>Access a curated pool of talent ranging from UI/UX designers to heavy-duty backend engineers.</p>
             </div>
         </div>
     </section>
@@ -175,7 +242,7 @@
             <div class="testimonial-card fade-in">
                 <div class="quote-icon">"</div>
                 <p class="testimonial-text">DevConnect helped me land my first freelance project. The platform is easy
-                    to use and the clients are genuine!</p>
+                    to use and the project owners are genuine!</p>
                 <div class="testimonial-author">
                     <div class="author-avatar">RS</div>
                     <div>
@@ -268,6 +335,7 @@
     </footer>
 
     <script src="js/landing.js"></script>
+    <script src="js/premium-global.js"></script>
 </body>
 
 </html>

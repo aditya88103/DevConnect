@@ -139,13 +139,15 @@
         if (user.role === 'freelancer') {
             dashboardLink.href = 'freelancer-dashboard.html';
         } else {
-            dashboardLink.href = 'client-dashboard.html';
+            dashboardLink.href = 'owner-dashboard.html';
         }
 
         // Load user info
         document.getElementById('userName').value = user.name;
         document.getElementById('userEmail').value = user.email;
-        document.getElementById('userRole').value = user.role;
+        let displayRole = user.role;
+        if (displayRole === 'client') displayRole = 'Project Owner';
+        document.getElementById('userRole').value = displayRole;
 
         // Theme selection
         const currentTheme = getCurrentTheme();

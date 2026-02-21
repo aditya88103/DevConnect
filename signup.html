@@ -4,167 +4,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - DevConnect</title>
-    <meta name="description" content="Create your DevConnect account">
-    <link rel="stylesheet" href="css/style.css">
+    <title>Create Account - DevConnect</title>
+    <link rel="stylesheet" href="css/auth-premium.css">
+    <style>
+        .role-selection-container {
+            display: flex;
+            gap: 30px;
+            padding: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .role-choice-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            width: 300px;
+            text-align: center;
+            transition: 0.4s;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .role-choice-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .role-icon-large {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .role-choice-card h2 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .role-choice-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+            z-index: 10;
+        }
+
+        .page-title h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .page-title p {
+            color: var(--text-secondary);
+        }
+    </style>
 </head>
 
 <body>
-    <div class="auth-container">
-        <div class="bg-animation">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-            <div class="circle circle-3"></div>
-        </div>
+    <a href="index.html" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 12H5M12 19L5 12L12 5" />
+        </svg>
+        Back to Home
+    </a>
 
-        <div class="auth-content">
-            <div class="auth-header">
-                <a href="index.html" class="back-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 12H5M12 19L5 12L12 5" />
-                    </svg>
-                    Back to Home
-                </a>
-                <h1>Create Account</h1>
-                <p class="auth-subtitle">Join DevConnect and start your journey</p>
-            </div>
-
-            <div class="role-selector">
-                <button class="role-tab active" data-role="freelancer">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M16 18L22 12L16 6M8 6L2 12L8 18" />
-                    </svg>
-                    Freelancer
-                </button>
-                <button class="role-tab" data-role="client">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path
-                            d="M21 16V8C21 6.9 20.1 6 19 6H5C3.9 6 3 6.9 3 8V16C3 17.1 3.9 18 5 18H19C20.1 18 21 17.1 21 16Z" />
-                    </svg>
-                    Client
-                </button>
-            </div>
-
-            <form id="signupForm" class="auth-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required placeholder="your@email.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Create a strong password"
-                        minlength="6">
-                    <small>At least 6 characters</small>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required
-                        placeholder="Confirm your password">
-                </div>
-
-                <div class="form-group checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="terms" required>
-                        <span>I agree to the Terms of Service and Privacy Policy</span>
-                    </label>
-                </div>
-
-                <button type="submit" class="submit-btn">
-                    Create Account
-                    <span class="btn-arrow">→</span>
-                </button>
-
-                <p class="auth-switch">
-                    Already have an account? <a href="login.html" id="loginLink">Sign In</a>
-                </p>
-            </form>
-        </div>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
     </div>
 
-    <script src="js/auth.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/theme.js"></script>
-    <script>
-        // Handle role selection from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const roleFromUrl = urlParams.get('role');
+    <div class="content-wrapper">
+        <div class="page-title">
+            <h1>Join DevConnect</h1>
+            <p>How would you like to use our platform?</p>
+        </div>
 
-        if (roleFromUrl) {
-            document.querySelectorAll('.role-tab').forEach(tab => {
-                tab.classList.remove('active');
-                if (tab.dataset.role === roleFromUrl) {
-                    tab.classList.add('active');
-                }
-            });
-        }
+        <div class="role-selection-container">
+            <a href="freelancer-auth.html?action=signup" class="role-choice-card">
+                <svg class="role-icon-large" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M16 18L22 12L16 6M8 6L2 12L8 18" />
+                </svg>
+                <h2>Freelancer</h2>
+                <p>Register to showcase your skills and find projects.</p>
+            </a>
 
-        // Role tab switching
-        document.querySelectorAll('.role-tab').forEach(tab => {
-            tab.addEventListener('click', function () {
-                document.querySelectorAll('.role-tab').forEach(t => t.classList.remove('active'));
-                this.classList.add('active');
-
-                // Update login link
-                const role = this.dataset.role;
-                document.getElementById('loginLink').href = `login.html?role=${role}`;
-            });
-        });
-
-        // Form submission
-        document.getElementById('signupForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            const activeRole = document.querySelector('.role-tab.active').dataset.role;
-
-            // Validate passwords match
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-
-            // Check if user already exists
-            const users = getUsers();
-            if (users.find(u => u.email === email)) {
-                alert('An account with this email already exists!');
-                return;
-            }
-
-            // Create user
-            const user = {
-                id: generateId(),
-                name,
-                email,
-                password,
-                role: activeRole,
-                createdAt: new Date().toISOString()
-            };
-
-            // Save user
-            users.push(user);
-            saveUsers(users);
-
-            // Auto login
-            login(user);
-
-            // Redirect based on role
-            if (activeRole === 'freelancer') {
-                window.location.href = 'freelancer-profile-form.html';
-            } else {
-                window.location.href = 'client-dashboard.html';
-            }
-        });
-    </script>
+            <a href="owner-auth.html?action=signup" class="role-choice-card">
+                <svg class="role-icon-large" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+                <h2>Project Owner</h2>
+                <p>Register to post requirements and hire experts.</p>
+            </a>
+        </div>
+    </div>
 </body>
 
 </html>

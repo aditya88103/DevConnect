@@ -62,7 +62,7 @@ function redirectIfAuthenticated() {
         if (user.role === 'freelancer') {
             window.location.href = 'freelancer-dashboard.html';
         } else if (user.role === 'client') {
-            window.location.href = 'client-dashboard.html';
+            window.location.href = 'owner-dashboard.html';
         }
     }
 }
@@ -74,13 +74,28 @@ if (typeof window !== 'undefined') {
     // Add logout functionality to logout buttons
     document.addEventListener('DOMContentLoaded', function () {
         const logoutBtns = document.querySelectorAll('.logout-btn, [data-action="logout"]');
-
         logoutBtns.forEach(btn => {
             btn.addEventListener('click', function (e) {
                 e.preventDefault();
                 if (confirm('Are you sure you want to logout?')) {
                     logout();
                 }
+            });
+        });
+
+        // Premium Logout Animation
+        const premiumLogoutBtns = document.querySelectorAll('.logoutButton, [data-action="logout-premium"]');
+        premiumLogoutBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Add the falling class to trigger CSS animation
+                btn.classList.add('falling');
+
+                // Wait for the animation to complete (1.2s in CSS) then logout
+                setTimeout(() => {
+                    logout();
+                }, 1200);
             });
         });
     });

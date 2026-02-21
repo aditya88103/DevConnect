@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Client Dashboard - DevConnect</title>
+    <title>Project Owner Dashboard - DevConnect</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -18,7 +18,7 @@
 
         <nav class="navbar">
             <div class="navbar-content">
-                <a href="client-dashboard.html" class="navbar-brand">
+                <a href="owner-dashboard.html" class="navbar-brand">
                     <svg class="navbar-brand-icon" viewBox="0 0 100 100" fill="none">
                         <path d="M30 20L50 40L70 20M30 80L50 60L70 80M20 30L40 50L20 70M80 30L60 50L80 70"
                             stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
@@ -40,14 +40,30 @@
                         </svg>
                         <span class="notification-badge" id="notificationBadge">0</span>
                     </button>
-                    <button class="logout-btn" data-action="logout">Logout</button>
+                    <button class="logoutButton" data-action="logout-premium">
+                        <div class="doorway">
+                            <div class="door">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                                </svg>
+                            </div>
+                            <div class="figure">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M12 5.9a2.1 2.1 0 110-4.2 2.1 2.1 0 010 4.2zm1.2 4.7l.5 7.7c0 .6-.4 1.2-1.1 1.2h-.1c-.6 0-1.1-.4-1.1-1.1L11 11H9V9h5c.6 0 1 .4 1 1v.6zM8 20.8L7.1 15 5.5 15l.6 6c.1.4.4.7.9.7h.1c.5 0 .9-.4.9-.9z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="button-text">Logout</span>
+                    </button>
                 </div>
             </div>
         </nav>
 
         <main class="main-content">
             <div class="page-header">
-                <h1 class="page-title">Welcome, <span id="userName">Client</span>! 👋</h1>
+                <h1 class="page-title">Welcome, <span id="userName">Owner</span>! 👋</h1>
                 <p class="page-subtitle">Find the perfect freelancer for your project</p>
             </div>
 
@@ -88,7 +104,7 @@
                         <p>Find skilled freelancers</p>
                     </a>
 
-                    <a href="client-requirement-form.html" class="action-card">
+                    <a href="owner-requirement-form.html" class="action-card">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                             <polyline points="14 2 14 8 20 8" />
@@ -147,7 +163,7 @@
             container.innerHTML = `
                 <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
                     <p>No requirements posted yet.</p>
-                    <a href="client-requirement-form.html" class="cta-btn" style="margin-top: 1rem; display: inline-flex;">
+                    <a href="owner-requirement-form.html" class="cta-btn" style="margin-top: 1rem; display: inline-flex;">
                         Post Your First Requirement
                         <span class="btn-arrow">→</span>
                     </a>

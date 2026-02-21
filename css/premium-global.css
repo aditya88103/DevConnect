@@ -1,0 +1,406 @@
+/* ==================== PREMIUM GLOBAL EFFECTS ==================== */
+
+:root {
+    --premium-glow: rgba(99, 102, 241, 0.4);
+    --liquid-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    --accent-glow: #6366f1;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(to right, #6366f1, #a855f7);
+    z-index: 10001;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* Cursor Glow */
+.cursor-glow {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    position: fixed;
+    pointer-events: none;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s;
+}
+
+body:hover .cursor-glow {
+    opacity: 1;
+}
+
+/* Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Float Animation */
+@keyframes floatPremium {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-20px) rotate(5deg);
+    }
+}
+
+.float-element {
+    animation: floatPremium 6s ease-in-out infinite;
+}
+
+/* Glass Card Glow */
+.glass-glow {
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-glow::after {
+    content: '';
+    position: absolute;
+    top: var(--y, 0);
+    left: var(--x, 0);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--premium-glow) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glass-glow:hover::after {
+    opacity: 1;
+}
+
+/* Liquid Button Effect */
+.liquid-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.liquid-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: -1;
+}
+
+.liquid-btn:hover::before {
+    width: 300%;
+    height: 300%;
+}
+
+/* Background Particles (Animated SVGs) */
+.premium-bg-decor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+.premium-bg-decor circle {
+    animation: pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+    from {
+        opacity: 0.2;
+        transform: scale(1) translate(0, 0);
+    }
+
+    to {
+        opacity: 0.4;
+        transform: scale(1.1) translate(20px, 20px);
+    }
+}
+
+/* Interactive Feature Cards */
+.feature-card {
+    transition: all 0.5s var(--liquid-ease);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.feature-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(99, 102, 241, 0.3);
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Card Hover Scale */
+.hover-scale {
+    transition: transform 0.4s var(--liquid-ease);
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #667eea, #764ba2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-gradient);
+}
+
+/* Premium Toast Notification */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 16px 24px;
+    border-radius: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: slideInToast 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    max-width: 350px;
+}
+
+.toast.error {
+    border-left: 4px solid #ff4b2b;
+}
+
+.toast.success {
+    border-left: 4px solid #43e97b;
+}
+
+@keyframes slideInToast {
+    from {
+        transform: translateX(100%) scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.toast.fade-out {
+    animation: fadeOutToast 0.5s forwards;
+}
+
+@keyframes fadeOutToast {
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+/* Premium Modal for Forgot Password */
+.modal-overlay-p {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s;
+}
+
+.modal-overlay-p.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-p {
+    background: rgba(30, 41, 59, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 30px;
+    width: 400px;
+    max-width: 90%;
+    transform: scale(0.8);
+    transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.modal-overlay-p.active .modal-p {
+    transform: scale(1);
+}
+
+.modal-p h2 {
+    color: white;
+    margin-bottom: 20px;
+}
+
+.modal-p p {
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+.modal-p .modal-close-btn {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 10px;
+}
+
+/* Premium Falling Man Logout Button - Absolute Version */
+.logoutButton {
+    --figure-duration: 1000;
+    --door-duration: 400;
+    --button-hover: rgba(255, 255, 255, 0.1);
+    --button-active: rgba(255, 255, 255, 0.15);
+    --text-color: #fff;
+    --icon-color: #fff;
+    --transition: 0.3s;
+
+    appearance: none;
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition);
+    color: var(--text-color);
+    font-family: inherit;
+}
+
+.logoutButton:hover {
+    background: var(--button-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.logoutButton .button-text {
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.4s ease, opacity 0.3s;
+}
+
+.logoutButton .doorway {
+    position: relative;
+    width: 20px;
+    height: 22px;
+    margin-right: 12px;
+    perspective: 100px;
+}
+
+.logoutButton .doorway svg {
+    display: block;
+    width: 20px;
+    height: 22px;
+}
+
+.logoutButton .door {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: 0 50%;
+    transition: transform calc(var(--door-duration) * 1ms) ease;
+    z-index: 2;
+    fill: var(--icon-color);
+}
+
+.logoutButton .figure {
+    position: absolute;
+    bottom: 4px;
+    right: 1px;
+    width: 12px;
+    height: 14px;
+    fill: var(--icon-color);
+    z-index: 1;
+    opacity: 0;
+    transition: transform calc(var(--figure-duration) * 1ms) linear,
+        bottom calc(var(--figure-duration) * 1ms) cubic-bezier(0.7, 0.1, 1, 1) 100ms,
+        opacity calc(var(--figure-duration) * 0.25ms) linear calc(var(--figure-duration) * 0.75ms);
+}
+
+/* Falling Animation State - Exactly Matched to Reference Screenshot */
+.logoutButton.falling {
+    background: #ff4b2b;
+    border-color: #ff4b2b;
+    pointer-events: none;
+}
+
+.logoutButton.falling .button-text {
+    transform: scale(0.8);
+    opacity: 0;
+}
+
+.logoutButton.falling .door {
+    transform: rotateY(-115deg);
+}
+
+.logoutButton.falling .figure {
+    animation: spin 1000ms infinite linear;
+    bottom: -1080px;
+    opacity: 0;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
