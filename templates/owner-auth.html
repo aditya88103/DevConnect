@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freelancer Login & Signup — DevConnect</title>
+    <title>Project Owner Login & Signup — DevConnect</title>
     <meta name="description"
-        content="Sign in or create your Freelancer account on DevConnect. Start finding real projects today.">
+        content="Sign in or create your Project Owner account on DevConnect. Start finding top talent today.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="css/auth-premium.css">
-    <link rel="stylesheet" href="css/premium-global.css">
+    <link rel="stylesheet" href="../css/auth-premium.css">
+    <link rel="stylesheet" href="../css/premium-global.css">
 </head>
 
-<body>
+<body class="owner-theme">
     <!-- Back -->
     <a href="index.html" class="back-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -46,7 +46,7 @@
         <div class="form-container sign-up-container">
             <form id="signupForm" autocomplete="off">
                 <h1>Create Account</h1>
-                <span>Freelancer Registration</span>
+                <span>Project Owner Registration</span>
 
                 <div class="input-group">
                     <input type="text" id="signupName" placeholder="Full Name" required autocomplete="off" />
@@ -67,7 +67,7 @@
                 </div>
 
                 <button type="submit" id="signupBtn">
-                    <span id="signupBtnText">Create Freelancer Account</span>
+                    <span id="signupBtnText">Create Owner Account</span>
                 </button>
 
                 <div class="mobile-switch">
@@ -80,7 +80,7 @@
         <div class="form-container sign-in-container">
             <form id="loginForm" autocomplete="off">
                 <h1>Welcome Back</h1>
-                <span>Sign in to your Freelancer account</span>
+                <span>Sign in to your Owner account</span>
 
                 <div class="input-group">
                     <input type="email" id="loginEmail" placeholder="Email Address" required autocomplete="off" />
@@ -91,7 +91,7 @@
                 </div>
 
                 <a href="javascript:void(0)"
-                    style="color:#818cf8;font-size:0.82rem;align-self:flex-end;margin:6px 0;text-decoration:none;">Forgot
+                    style="color:#f59e0b;font-size:0.82rem;align-self:flex-end;margin:6px 0;text-decoration:none;">Forgot
                     password?</a>
 
                 <button type="submit" id="loginBtn">
@@ -108,23 +108,23 @@
         <div class="overlay-container">
             <div class="overlay">
 
-                <!-- Left overlay (shown when in sign-up mode → prompt to sign in) -->
+                <!-- Left overlay (shown when sign-up mode → prompt to go back to sign-in) -->
                 <div class="overlay-panel overlay-left">
-                    <div class="overlay-icon">👋</div>
+                    <div class="overlay-icon">🏢</div>
                     <h1>Welcome Back!</h1>
-                    <p>Already have an account? Sign in and pick up where you left off.</p>
+                    <p>Already have an Owner account? Sign in and manage your projects.</p>
 
-                    <!-- REAL DATA: Active Projects count for freelancers -->
+                    <!-- REAL DATA: Freelancers available for owners to browse -->
                     <div class="overlay-social-proof">
                         <div class="overlay-avatars" id="leftAvatars">
                             <!-- filled by JS -->
                         </div>
-                        <p><span id="leftProjectCount">0</span> active projects posted</p>
+                        <p><span id="leftFreelancerCount">0</span> freelancers active</p>
                     </div>
 
-                    <div class="overlay-stats" id="leftStats">
+                    <div class="overlay-stats">
                         <div class="overlay-stat">
-                            <h3 id="stat-freelancers">0</h3>
+                            <h3 id="stat-freelancers-left">0</h3>
                             <p>Freelancers</p>
                         </div>
                         <div class="overlay-stat">
@@ -134,27 +134,27 @@
                     </div>
 
                     <div class="overlay-tags">
-                        <span class="overlay-tag">💻 React</span>
-                        <span class="overlay-tag">🎨 UI/UX</span>
-                        <span class="overlay-tag">📱 Flutter</span>
-                        <span class="overlay-tag">⚙️ Node.js</span>
+                        <span class="overlay-tag">🌐 Web Apps</span>
+                        <span class="overlay-tag">📱 Mobile</span>
+                        <span class="overlay-tag">🎨 Design</span>
+                        <span class="overlay-tag">🤖 AI/ML</span>
                     </div>
 
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
 
-                <!-- Right overlay (shown when in sign-in mode → prompt to sign up) -->
+                <!-- Right overlay (shown on sign-in page → prompt to create account) -->
                 <div class="overlay-panel overlay-right">
-                    <div class="overlay-icon">🚀</div>
-                    <h1>Hello, Freelancer!</h1>
-                    <p>Join the platform and start getting noticed by real project owners.</p>
+                    <div class="overlay-icon">💼</div>
+                    <h1>Hello, Project Owner!</h1>
+                    <p>Post your requirement and discover talented freelancers ready to build.</p>
 
-                    <!-- REAL DATA: Freelancer count  -->
+                    <!-- REAL DATA: Active freelancers available -->
                     <div class="overlay-social-proof">
                         <div class="overlay-avatars" id="rightAvatars">
                             <!-- filled by JS -->
                         </div>
-                        <p><span id="rightFreelancerCount">0</span> freelancers active</p>
+                        <p><span id="rightFreelancerCount">0</span> freelancers ready</p>
                     </div>
 
                     <div class="overlay-stats">
@@ -164,7 +164,7 @@
                         </div>
                         <div class="overlay-stat">
                             <h3 id="stat-projects-r">0</h3>
-                            <p>Projects</p>
+                            <p>Active Projects</p>
                         </div>
                         <div class="overlay-stat">
                             <h3>98%</h3>
@@ -173,9 +173,9 @@
                     </div>
 
                     <div class="overlay-tags">
-                        <span class="overlay-tag">✅ Free Profile</span>
-                        <span class="overlay-tag">📩 Direct Messages</span>
-                        <span class="overlay-tag">🏆 Get Hired</span>
+                        <span class="overlay-tag">📋 Post Requirements</span>
+                        <span class="overlay-tag">🔍 Browse Talent</span>
+                        <span class="overlay-tag">💬 Direct Chat</span>
                     </div>
 
                     <button class="ghost" id="signUp">Create Account</button>
@@ -185,9 +185,9 @@
         </div>
     </div><!-- /container -->
 
-    <script src="js/storage.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/premium-global.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/premium-global.js"></script>
     <script>
         /* ── Panel toggle ── */
         const container = document.getElementById('container');
@@ -208,6 +208,7 @@
 
         /* ══════════════════════════════════════════
            REAL DATA from localStorage
+           Owner page → shows: active freelancers, active projects
         ══════════════════════════════════════════ */
         function loadRealStats() {
             const users = getUsers();
@@ -217,26 +218,23 @@
             const fCount = freelancers.length;
             const pCount = projects.length;
 
-            /* Update all stat numbers with animated counting */
-            animateCount('stat-freelancers', fCount);
+            /* Animated count-up */
+            animateCount('stat-freelancers-left', fCount);
             animateCount('stat-projects-left', pCount);
             animateCount('stat-freelancers-r', fCount);
             animateCount('stat-projects-r', pCount);
 
-            /* Update social proof text */
-            document.getElementById('leftProjectCount').textContent = pCount;
+            /* Social proof text */
+            document.getElementById('leftFreelancerCount').textContent = fCount;
             document.getElementById('rightFreelancerCount').textContent = fCount;
 
-            /* Build avatar initials from real recent freelancers */
+            /* Avatars — show initials of real freelancers */
             const recent = freelancers.slice(-3);
-            const leftAv = document.getElementById('leftAvatars');
-            const rightAv = document.getElementById('rightAvatars');
 
             function buildAvatars(container, list) {
                 container.innerHTML = '';
                 if (list.length === 0) {
-                    // default placeholder
-                    ['?', '?', '?'].forEach((_, i) => {
+                    ['–', '–', '–'].forEach(() => {
                         const d = document.createElement('div');
                         d.className = 'overlay-avatar';
                         d.textContent = '–';
@@ -255,22 +253,20 @@
                 });
             }
 
-            buildAvatars(leftAv, recent);
-            buildAvatars(rightAv, recent);
+            buildAvatars(document.getElementById('leftAvatars'), recent);
+            buildAvatars(document.getElementById('rightAvatars'), recent);
         }
 
-        /* Smooth number counter */
         function animateCount(elId, target) {
             const el = document.getElementById(elId);
             if (!el) return;
-            const duration = 1000;
-            const step = Math.ceil(target / 40);
+            const step = Math.max(1, Math.ceil(target / 40));
             let current = 0;
             const timer = setInterval(() => {
                 current = Math.min(current + step, target);
                 el.textContent = current;
                 if (current >= target) clearInterval(timer);
-            }, duration / 40);
+            }, 25);
         }
 
         loadRealStats();
@@ -303,15 +299,15 @@
 
             setTimeout(() => {
                 const users = getUsers();
-                const user = users.find(u => u.email === email && u.password === password && u.role === 'freelancer');
+                const user = users.find(u => u.email === email && u.password === password && u.role === 'client');
                 if (!user) {
                     const any = users.find(u => u.email === email && u.password === password);
-                    showToast(any ? 'You are a Project Owner — use Owner Login.' : 'Invalid email or password!');
+                    showToast(any ? 'You are a Freelancer — use Freelancer Login.' : 'Invalid email or password!');
                     btn.disabled = false; text.textContent = 'Sign In';
                     return;
                 }
                 login(user); text.textContent = '✓ Success!';
-                setTimeout(() => window.location.href = 'freelancer-dashboard.html', 600);
+                setTimeout(() => window.location.href = 'owner-dashboard.html', 600);
             }, 800);
         });
 
@@ -333,15 +329,13 @@
                 const users = getUsers();
                 if (users.find(u => u.email === email)) {
                     showToast('Email already registered!');
-                    btn.disabled = false; text.textContent = 'Create Freelancer Account';
+                    btn.disabled = false; text.textContent = 'Create Owner Account';
                     return;
                 }
-                const newUser = { id: generateId(), name, email, password, role: 'freelancer', createdAt: new Date().toISOString() };
+                const newUser = { id: generateId(), name, email, password, role: 'client', createdAt: new Date().toISOString() };
                 users.push(newUser); saveUsers(users); login(newUser);
                 text.textContent = '✓ Registered!';
-                /* Re-render stats with updated count */
-                loadRealStats();
-                setTimeout(() => window.location.href = 'freelancer-profile-form.html', 600);
+                setTimeout(() => window.location.href = 'owner-dashboard.html', 600);
             }, 900);
         });
     </script>
