@@ -49,7 +49,8 @@ if (glow) {
     });
 }
 
-// ==================== ROLE CARD 3D TILT ====================
+// Role card tilt removed as per request
+/*
 document.querySelectorAll('.role-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
@@ -63,6 +64,7 @@ document.querySelectorAll('.role-card').forEach(card => {
         card.style.transform = '';
     });
 });
+*/
 
 // ==================== FEATURE CARD STAGGER ====================
 document.querySelectorAll('.feature-card').forEach((card, i) => {
