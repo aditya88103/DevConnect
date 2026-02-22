@@ -1,56 +1,432 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Core Settings | DevConnect</title>
-    <link rel="stylesheet" href="./css/auth-premium.css">
-    <link rel="stylesheet" href="./css/landing.css">
-    <link rel="stylesheet" href="./css/premium-global.css">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body class="premium-layout">
-    <div class="page-loader"><div class="loader-orb"></div></div>
-    <div class="cursor-glow"></div>
-    <div class="orb-container"><div class="orb orb-1"></div></div>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/premium-global.css">
+    <style>
+        /* Toggle Switch Styling */
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 32px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.1) 100%);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
 
-    <nav class="navbar scrolled"><div class="nav-container"><a href="index.html" class="logo magnetic">DevConnect</a></div></nav>
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #6366f1;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+        }
+
+        .toggle-switch.enabled {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.3) 0%, rgba(168, 85, 247, 0.2) 100%);
+            border-color: #6366f1;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .toggle-switch.enabled::after {
+            left: 32px;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            box-shadow: 0 2px 12px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Enhanced Setting Cards */
+        .setting-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 16px;
+            padding: 28px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .setting-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .setting-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .setting-card:hover::before {
+            opacity: 1;
+        }
+
+        .setting-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .setting-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .setting-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .setting-card:hover .setting-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .setting-title {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .setting-description {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .setting-value {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.enabled {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-badge.disabled {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse-indicator 2s ease-in-out infinite;
+        }
+
+        .status-indicator.enabled {
+            background: #10b981;
+            box-shadow: 0 0 6px #10b981;
+        }
+
+        /* Danger Zone Card */
+        .danger-card {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.05) 100%);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .danger-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .danger-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .danger-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: #ef4444;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .danger-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .danger-btn {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.2);
+        }
+
+        .danger-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(239, 68, 68, 0.4);
+        }
+
+        .danger-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Grid Layout */
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 28px;
+        }
+
+        /* Page Header */
+        .settings-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .settings-header h1 {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 3rem;
+            font-weight: 900;
+            margin: 20px 0;
+            animation: slideDown 0.6s ease;
+        }
+
+        .settings-header p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.05rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse-indicator {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.2);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="premium-layout">
+    <div class="page-loader">
+        <div class="loader-orb"></div>
+    </div>
+    <div class="cursor-glow"></div>
+    <div class="orb-container">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+    </div>
+
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo magnetic">DevConnect</a>
+        </div>
+    </nav>
 
     <main class="main-content container mt-nav">
-        <div class="dashboard-header reveal mb-60">
+        <div class="settings-header reveal">
             <span class="section-tag-p">System Configuration</span>
-            <h1 class="shimmer-text" style=\"font-size: 3rem;\">Node Preferences</h1>
-            <p class="text-muted">Adjust your connectivity and security protocols.</p>
+            <h1>Node Preferences</h1>
+            <p>Adjust your connectivity and security protocols with advanced controls.</p>
         </div>
 
-        <div class="stagger-reveal" style="max-width: 900px; margin: 0 auto;">
-            <div class=\"grid-2 gap-30 mb-30\">
-                <section class="aura-card reveal p-30" style=\"background: rgba(15, 23, 42, 0.4);\">
-                    <h3 class="white mb-20 font-700">Security Layer</h3>
-                    <div class="flex flex-between items-center mb-24">
-                        <div><p class="white small uppercase font-700\">Two-Factor Sync</p><p class="text-faint small\">Protocol: Bio-Metric</p></div>
-                        <button class="cta-outline magnetic" style=\"font-size: 0.75rem; padding: 6px 12px;\">Enable</button>
+        <div class="stagger-reveal" style="max-width: 1200px; margin: 0 auto;">
+            <div class="settings-grid mb-40">
+                <!-- Security Card -->
+                <section class="setting-card reveal">
+                    <div class="setting-header">
+                        <div>
+                            <h3 class="setting-title">🔐 Two-Factor Sync</h3>
+                            <p class="setting-description">Protocol: Bio-Metric Authentication</p>
+                        </div>
+                        <div class="setting-icon">🔒</div>
+                    </div>
+                    <div class="setting-value">
+                        <div class="toggle-switch" id="twoFactorToggle"></div>
+                        <span class="status-badge disabled" id="twoFactorStatus">
+                            <span class="status-indicator"></span>
+                            Disabled
+                        </span>
                     </div>
                 </section>
 
-                <section class="aura-card reveal p-30" style=\"background: rgba(15, 23, 42, 0.4);\">
-                    <h3 class="white mb-20 font-700">Privacy Matrix</h3>
-                    <div class="flex flex-between items-center">
-                        <div><p class="white small uppercase font-700\">Profile Visibility</p><p class="text-faint small\">Current: Broadcast All</p></div>
-                        <span class="tag-green">Encrypted</span>
+                <!-- Privacy Card -->
+                <section class="setting-card reveal">
+                    <div class="setting-header">
+                        <div>
+                            <h3 class="setting-title">👁️ Profile Visibility</h3>
+                            <p class="setting-description">Control who can see your profile</p>
+                        </div>
+                        <div class="setting-icon">👁️</div>
+                    </div>
+                    <div class="setting-value">
+                        <div class="toggle-switch enabled" id="privacyToggle"></div>
+                        <span class="status-badge enabled" id="privacyStatus">
+                            <span class="status-indicator enabled"></span>
+                            Broadcast All
+                        </span>
+                    </div>
+                </section>
+
+                <!-- Notifications Card -->
+                <section class="setting-card reveal">
+                    <div class="setting-header">
+                        <div>
+                            <h3 class="setting-title">🔔 Notifications</h3>
+                            <p class="setting-description">Receive real-time alerts and updates</p>
+                        </div>
+                        <div class="setting-icon">🔔</div>
+                    </div>
+                    <div class="setting-value">
+                        <div class="toggle-switch enabled" id="notifToggle"></div>
+                        <span class="status-badge enabled" id="notifStatus">
+                            <span class="status-indicator enabled"></span>
+                            Enabled
+                        </span>
                     </div>
                 </section>
             </div>
 
-            <section class="aura-card neon-border reveal p-40" style="background: rgba(63, 10, 10, 0.2); border: 1px solid rgba(239, 68, 68, 0.2) !important;">
-                <h3 class="red mb-15 font-900 uppercase letter-spacing-2">Terminal Access (Danger Zone)</h3>
-                <p class="text-muted small mb-24">Warning: Deletion of this node is permanent and will clear all encrypted mission logs.</p>
-                <button class="cta-outline magnetic" style="color: #ef4444; border-color: #ef4444; width: 100%;">De-Authorize Node (Delete Account)</button>
+            <!-- Danger Zone -->
+            <section class="danger-card reveal">
+                <h3 class="danger-title">⚠️ Terminal Access (Danger Zone)</h3>
+                <p class="danger-description">Deletion of this node is permanent and will clear all encrypted mission logs. This action cannot be undone.</p>
+                <button class="danger-btn">🗑️ De-Authorize Node (Delete Account)</button>
             </section>
         </div>
     </main>
-    <script src="./js/auth.js"></script>
-    <script src="./js/premium-effects.js"></script>
-    <script>initPremiumEffects();</script>
+
+    <script src="js/auth.js"></script>
+    <script src="js/premium-effects.js"></script>
+    <script>
+        const twoFactorToggle = document.getElementById('twoFactorToggle');
+        const privacyToggle = document.getElementById('privacyToggle');
+        const notifToggle = document.getElementById('notifToggle');
+
+        const twoFactorStatus = document.getElementById('twoFactorStatus');
+        const privacyStatus = document.getElementById('privacyStatus');
+        const notifStatus = document.getElementById('notifStatus');
+
+        // Toggle functionality with smooth animations
+        function toggleSetting(toggle, statusEl) {
+            toggle.addEventListener('click', function() {
+                this.classList.toggle('enabled');
+                const isEnabled = this.classList.contains('enabled');
+
+                if (isEnabled) {
+                    statusEl.classList.remove('disabled');
+                    statusEl.classList.add('enabled');
+                    statusEl.innerHTML = '<span class="status-indicator enabled"></span>Enabled';
+                } else {
+                    statusEl.classList.remove('enabled');
+                    statusEl.classList.add('disabled');
+                    statusEl.innerHTML = '<span class="status-indicator"></span>Disabled';
+                }
+            });
+        }
+
+        toggleSetting(twoFactorToggle, twoFactorStatus);
+        toggleSetting(privacyToggle, privacyStatus);
+        toggleSetting(notifToggle, notifStatus);
+
+        // Delete account with confirmation
+        document.querySelector('.danger-btn').addEventListener('click', function() {
+            if (confirm('Are you absolutely sure? This action cannot be undone.')) {
+                if (confirm('This will permanently delete your account and all data. Type "DELETE" to confirm:')) {
+                    alert('Account deleted successfully.');
+                }
+            }
+        });
+
+        if (typeof initPremiumEffects === 'function') {
+            initPremiumEffects();
+        }
+    </script>
 </body>
+
 </html>

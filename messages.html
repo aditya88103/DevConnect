@@ -1,69 +1,418 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HoloChat | DevConnect</title>
-    <link rel="stylesheet" href="./css/auth-premium.css">
-    <link rel="stylesheet" href="./css/landing.css">
-    <link rel="stylesheet" href="./css/premium-global.css">
-    <link rel="stylesheet" href="./css/style.css">
-</head>
-<body class="premium-layout">
-    <div class="page-loader"><div class="loader-orb"></div></div>
-    <div class="cursor-glow"></div>
-    <div class="orb-container"><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/premium-global.css">
+    <style>
+        /* Enhanced Contact Card Styling */
+        .contact-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 14px;
+            padding: 16px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
 
-    <nav class="navbar scrolled"><div class="nav-container">
-        <a href="index.html" class="logo magnetic">DevConnect</a>
-        <div class="nav-links">
-            <a href="messages.html" class="active">Sub-Space Inbox</a>
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.05) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(30, 41, 59, 0.6) 100%);
+            box-shadow: 0 8px 32px rgba(99, 102, 241, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .contact-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-info {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .contact-name {
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 4px;
+        }
+
+        .contact-id {
+            color: rgba(99, 102, 241, 0.7);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .contact-status {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #10b981;
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        .status-text {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 16px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.6);
+            animation: typingAnimation 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% {
+                opacity: 0.6;
+                transform: translateY(0);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Sidebar Styling */
+        .contacts-sidebar {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(15, 23, 42, 0.5) 100%);
+            border-right: 1px solid rgba(99, 102, 241, 0.15);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contacts-sidebar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(99, 102, 241, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar-header-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .contacts-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contacts-list > * {
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .empty-state-icon {
+            font-size: 5rem;
+            opacity: 0.1;
+            margin-bottom: 20px;
+            animation: floatPremium 4s ease-in-out infinite;
+        }
+
+        .empty-state h2 {
+            color: #fff;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 0 0 15px 0;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .empty-state p {
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 420px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .status-indicator-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 100px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            margin-top: 24px;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #6366f1;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .indicator-text {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        /* Animations */
+        @keyframes floatPremium {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+            }
+            50% {
+                opacity: 0.6;
+                box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+            }
+        }
+
+        /* Grid refinement */
+        .grid-1-3 {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 0;
+            height: calc(100vh - 280px);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(99, 102, 241, 0.15);
+        }
+
+        @media (max-width: 768px) {
+            .grid-1-3 {
+                grid-template-columns: 1fr;
+                height: auto;
+                min-height: 600px;
+            }
+
+            .contacts-sidebar {
+                display: none;
+            }
+        }
+
+        /* Main chat area */
+        .chat-main {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.2) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+    </style>
+</head>
+
+<body class="premium-layout">
+    <div class="page-loader">
+        <div class="loader-orb"></div>
+    </div>
+    <div class="scroll-progress"></div>
+    <div class="cursor-glow"></div>
+    <div class="orb-container">
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="logo magnetic">DevConnect</a>
+            <div class="nav-links">
+                <a href="messages.html" class="active">💬 HoloChat Nexus</a>
+            </div>
         </div>
-    </div></nav>
+    </nav>
 
     <main class="main-content container mt-nav">
-        <div class="grid-1-3" style="height: calc(100vh - 180px);">
-            <aside class="aura-card reveal" style="height: 100%; display: flex; flex-direction: column; background: rgba(15, 23, 42, 0.4);">
-                <div class="p-24 border-bottom">
-                    <h3 class="white shimmer-text font-700">Comms Logic</h3>
+        <div class="dashboard-header reveal mb-40">
+            <span class="section-tag-p">Sub-Space Communications</span>
+            <h1 class="shimmer-text">Encrypted Nexus</h1>
+            <p class="text-muted">Direct frequency established with global talent and visionaries. Connect, collaborate, and build amazing things together.</p>
+        </div>
+
+        <div class="grid-1-3">
+            <!-- Contacts Sidebar -->
+            <aside class="contacts-sidebar reveal">
+                <div class="sidebar-header">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h3>Frequencies</h3>
+                            <span class="sidebar-header-tag">🟢 Live</span>
+                        </div>
+                    </div>
                 </div>
-                <div id="contactsList" class="p-15 stagger-reveal" style="flex: 1; overflow-y: auto;">
+                <div id="contactsList" class="contacts-list stagger-reveal">
                     <!-- Contacts via JS -->
                 </div>
             </aside>
 
-            <section class="aura-card neon-border reveal" style="height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; background: rgba(15, 23, 42, 0.2);">
-                <div class="p-40">
-                    <div class="icon mb-30" style="font-size: 4rem; opacity: 0.2; animation: floatPremium 4s ease-in-out infinite;">📡</div>
-                    <h2 class="white shimmer-text mb-15 font-900" style=\"font-size: 2.5rem;\">Frequency Established</h2>
-                    <p class="text-muted" style=\"max-width: 400px; margin: 0 auto;\">Select an encrypted node from the terminal to initialize secure communication.</p>
+            <!-- Main Chat Area -->
+            <section class="chat-main neon-border reveal" style="display: flex; align-items: center; justify-content: center; text-align: center;">
+                <div class="empty-state">
+                    <div class="empty-state-icon">📡</div>
+                    <h2>Ready for Uplink</h2>
+                    <p>Select an active node from the frequency list to initialize end-to-end encrypted synchronization and start your conversation.</p>
+                    <div class="status-indicator-bar">
+                        <div class="pulse-dot"></div>
+                        <span class="indicator-text">Secure Channel Idle</span>
+                    </div>
                 </div>
             </section>
         </div>
     </main>
 
-    <script src="./js/storage.js"></script>
-    <script src="./js/auth.js"></script>
-    <script src="./js/premium-effects.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/premium-effects.js"></script>
     <script>
         const user = getCurrentUser();
         const contactsList = document.getElementById('contactsList');
-        
-        // Dynamic contact list
-        const users = getAllUsers().filter(u => u.id !== user.id).slice(0, 8);
-        contactsList.innerHTML = users.map(u => 
-            <a href=\"chat.html?user=\" class=\"aura-card gooey-card p-15 mb-10 interactive flex items-center gap-15\" style=\"border-radius: 16px;\">
-                <div class=\"profile-photo-wrapper\" style=\"width: 45px; height: 45px;\">
-                    <img src=\"https://ui-avatars.com/api/?name=&background=6366f1&color=fff\" style=\"width: 100%; height: 100%; border-radius: 50%;\">
-                </div>
-                <div style=\"flex: 1;\">
-                    <p class=\"white bold small\"></p>
-                    <p class=\"text-faint\" style=\"font-size: 0.7rem;\">Status: Static Stable</p>
-                </div>
-                <div style=\"width: 8px; height: 8px; border-radius: 50%; background: #10b981;\"></div>
-            </a>
-        ).join('');
-        initPremiumEffects();
+
+        // Dynamic contact list with enhanced UI
+        const users = getUsers().filter(u => u.id !== user.id).slice(0, 15);
+
+        if (users.length === 0) {
+            contactsList.innerHTML = `
+                <div style="padding: 24px; text-align: center;">
+                    <p class="text-muted small">No active nodes detected in range.</p>
+                </div>`;
+        } else {
+            contactsList.innerHTML = users.map((u, i) => `
+                <a href="chat.html?user=${u.id}" class="contact-card reveal stagger-item" style="animation-delay: ${i * 0.05}s;">
+                    <div style="display: flex; gap: 12px;">
+                        <div class="profile-photo-wrapper" style="width: 45px; height: 45px; padding: 2px; flex-shrink: 0;">
+                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(u.name)}&background=6366f1&color=fff"
+                                 style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
+                        </div>
+                        <div class="contact-info">
+                            <div class="contact-name">${u.name}</div>
+                            <div class="contact-id">Node ID: ${u.id.substring(0, 8)}</div>
+                        </div>
+                        <div class="contact-status">
+                            <div class="status-dot"></div>
+                            <span class="status-text">UP</span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        if (typeof initPremiumEffects === 'function') {
+            initPremiumEffects();
+        }
     </script>
 </body>
+
 </html>
