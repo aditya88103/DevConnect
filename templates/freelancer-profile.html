@@ -3,47 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Profile | DevConnect</title>
+    <title>Public Profile | DevConnect</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/premium-global.css">
 </head>
 <body class="premium-layout">
+    <div class="page-loader"><div class="loader-orb"></div></div>
     <div class="scroll-progress"></div>
     <div class="cursor-glow"></div>
     <div class="orb-container"><div class="orb orb-1"></div><div class="orb orb-3"></div></div>
 
     <nav class="navbar scrolled"><div class="nav-container">
-        <a href="freelancer-dashboard.html" class="logo">DevConnect</a>
+        <a href="freelancer-dashboard.html" class="logo magnetic">DevConnect</a>
         <div class="nav-right">
-            <a href="freelancer-profile-form.html" class="cta-outline">Edit Profile</a>
+            <a href="freelancer-profile-form.html" class="cta-outline magnetic">Edit Identity</a>
         </div>
     </div></nav>
 
     <main class="main-content container mt-nav">
         <div class="grid-1-2">
             <div class="side-col reveal">
-                <div class="aura-card p-30 text-center">
-                    <div class="profile-photo-wrapper mb-20" style="width: 150px; height: 150px; margin: 0 auto;">
-                        <img src="" id="profileImg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #1e293b;">
+                <div class="aura-card neon-border p-40 text-center" style=\"background: rgba(15, 23, 42, 0.4);\">
+                    <div class="profile-photo-wrapper mb-30" style="width: 180px; height: 180px; margin: 0 auto; padding: 6px;">
+                        <img src="" id="profileImg" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; background: #0f172a;">
                     </div>
-                    <h2 id="profileName" class="white mb-8">User Name</h2>
-                    <p id="profileTitle" class="text-muted small mb-20">Professional Title</p>
+                    <h2 id="profileName" class="white shimmer-text mb-8 font-900" style=\"font-size: 2rem;\">User Name</h2>
+                    <p id="profileTitle" class="text-faint small uppercase letter-spacing-1 mb-24">Title Unavailable</p>
                     <div class="flex flex-center gap-10">
-                        <span class="tag-indigo">Freelancer</span>
-                        <span id="profileLocation" class="text-faint small">Location</span>
+                        <span class="tag-indigo">Rank: Elite</span>
+                        <span id="profileLocation" class="text-muted small">Remote Node</span>
+                    </div>
+                </div>
+
+                <div class=\"aura-card p-30 mt-30 reveal\" style=\"background: rgba(15, 23, 42, 0.4);\">
+                    <h4 class=\"white mb-15 small uppercase\">Connectivity</h4>
+                    <div class=\"stack-10\">
+                        <div class=\"flex flex-between small\"><span class=\"text-faint\">Sync Rate</span><span class=\"green\">98%</span></div>
+                        <div class=\"flex flex-between small\"><span class=\"text-faint\">Reputation</span><span class=\"white\">5.0</span></div>
                     </div>
                 </div>
             </div>
 
             <div class="main-col stagger-reveal">
-                <section class="aura-card p-40 mb-30">
-                    <h3 class="white mb-20">About Me</h3>
-                    <p id="profileBio" class="text-muted line-height-1.8">No bio provided yet.</p>
+                <section class="aura-card gooey-card p-40 mb-30">
+                    <h3 class="white shimmer-text mb-24 font-700">Mission Statement</h3>
+                    <p id="profileBio" class="text-muted line-height-1.8" style=\"font-size: 1.1rem;\">Initializing bio sync...</p>
                 </section>
 
-                <section class="aura-card p-40">
-                    <h3 class="white mb-20">Expertise & Skills</h3>
-                    <div id="skillsList" class="flex flex-wrap gap-10">
+                <section class="aura-card gooey-card p-40">
+                    <h3 class="white shimmer-text mb-24 font-700">Integrated Skill Array</h3>
+                    <div id="skillsList" class="flex flex-wrap gap-12">
                         <!-- Skills via JS -->
                     </div>
                 </section>
@@ -61,13 +70,14 @@
         document.getElementById('profileName').textContent = user.name;
         document.getElementById('profileTitle').textContent = user.title || 'Professional Freelancer';
         document.getElementById('profileLocation').textContent = user.location || 'Remote';
-        document.getElementById('profileBio').textContent = user.bio || 'This freelancer hasn\'t written a bio yet.';
+        document.getElementById('profileBio').textContent = user.bio || 'This freelancer is currently operating in stealth mode.';
         
         if (user.skills) {
             document.getElementById('skillsList').innerHTML = user.skills.map(s => 
-                <span class=\"tag-indigo\" style=\"padding: 8px 16px; border-radius: 8px;\"></span>
+                <span class=\"tag-indigo magnetic\" style=\"padding: 10px 20px; border-radius: 12px; font-size: 0.9rem;\"></span>
             ).join('');
         }
+        initPremiumEffects();
     </script>
 </body>
 </html>

@@ -8,48 +8,66 @@
     <link rel="stylesheet" href="../css/premium-global.css">
 </head>
 <body class="premium-layout">
+    <div class="page-loader"><div class="loader-orb"></div></div>
     <div class="scroll-progress"></div>
     <div class="cursor-glow"></div>
     <div class="orb-container"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
 
     <nav class="navbar scrolled"><div class="nav-container">
         <div class="nav-left">
-            <a href="index.html" class="logo">DevConnect</a>
+            <a href="index.html" class="logo magnetic">DevConnect</a>
             <div class="nav-links">
-                <a href="freelancer-dashboard.html" class="active">Dashboard</a>
-                <a href="messages.html">Messages</a>
-                <a href="settings.html">Settings</a>
+                <a href="freelancer-dashboard.html" class="active">Nexus</a>
+                <a href="messages.html">HoloChat</a>
+                <a href="settings.html">Config</a>
             </div>
         </div>
         <div class="nav-right">
-             <a href="freelancer-profile.html" class="user-menu reveal">
-                <img src="https://ui-avatars.com/api/?name=User" class="user-avatar" id="userAvatar">
+             <a href="freelancer-profile.html" class="user-menu reveal magnetic">
+                <div class=\"profile-photo-wrapper\" style=\"width: 40px; height: 40px;\">
+                    <img src=\"https://ui-avatars.com/api/?name=User\" class=\"user-avatar\" id=\"userAvatar\" style=\"width: 100%; height: 100%; border-radius: 50%;\">
+                </div>
             </a>
-            <button class="logoutButton" data-action="logout-premium">Log Out</button>
+            <button class=\"logoutButton magnetic\" data-action=\"logout-premium\">Log Out</button>
         </div>
     </div></nav>
 
     <main class="main-content container mt-nav">
         <div class="dashboard-header reveal mb-40">
-            <span class="section-tag-p">Talent Dashboard</span>
-            <h1 class="shimmer-text">Premium Feed</h1>
-            <p>High-value opportunities matching your skill set.</p>
+            <span class="section-tag-p">Freelancer Portal</span>
+            <h1 class="shimmer-text" style=\"font-size: 3.5rem;\">Opportunity Stream</h1>
+            <p class="text-muted">Direct access to premium requirements from visionaries worldwide.</p>
         </div>
 
         <div class="grid-2-1">
             <div class="column-left">
                 <section class="reveal">
-                    <h2 class="white mb-24">Live Projects</h2>
+                    <h2 class="white mb-24">Avaliable Node Projects</h2>
                     <div id="projectsList" class="stagger-reveal">
                         <!-- Projects via JS -->
                     </div>
                 </section>
             </div>
-            <div class="side-column reveal">
-                <div class="aura-card p-30 mb-30">
-                    <h3 class="white mb-20">Your Profile</h3>
-                    <a href="freelancer-profile-form.html" class="liquid-btn primary-btn w-100 block-center" style="text-align:center;">Update Skills</a>
-                </div>
+            <div class="side-column">
+                <section class="aura-card neon-border reveal p-30 mb-30" style=\"background: rgba(15, 23, 42, 0.4);\">
+                    <h3 class="white mb-20">Identity Matrix</h3>
+                    <p class=\"small text-muted mb-24\">Keep your professional signature sharp to increase your match percentage.</p>
+                    <a href="freelancer-profile-form.html" class="liquid-btn primary-btn w-100 block-center magnetic" style="text-align:center;">Update Skills</a>
+                </section>
+
+                <section class="aura-card reveal p-30" style=\"background: rgba(15, 23, 42, 0.4);\">
+                    <h3 class="white mb-20">Global Pulse</h3>
+                    <div class=\"stack-15\">
+                        <div class=\"flex flex-between small\">
+                            <span class=\"text-faint\">Project Velocity</span>
+                            <span class=\"green\">High</span>
+                        </div>
+                        <div class=\"flex flex-between small\">
+                            <span class=\"text-faint\">Competition</span>
+                            <span class=\"white\">Dynamic</span>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
     </main>
@@ -66,15 +84,19 @@
         const list = document.getElementById('projectsList');
         
         if (reqs.length === 0) {
-            list.innerHTML = '<div class=\"aura-card p-40 text-center text-muted\">No projects found. Check back soon!</div>';
+            list.innerHTML = '<div class=\"aura-card p-40 text-center text-muted\">The stream is currently quiet. Re-syncing for new nodes...</div>';
         } else {
             list.innerHTML = reqs.map(r => 
-                <div class=\"aura-card p-24 mb-20 interactive\" onclick=\"alert('Opening project...')\">
+                <div class=\"aura-card gooey-card p-24 mb-20 interactive\" onclick=\"alert('Syncing project details...')\">
                     <div class=\"flex flex-between mb-15\">
-                        <h4 class=\"white\"></h4>
+                        <h4 class=\"white shimmer-text font-800\"></h4>
                         <div class=\"tag-green\"></div>
                     </div>
-                    <p class=\"text-muted small\"></p>
+                    <p class=\"text-muted small mb-20 line-clamp-2\"></p>
+                    <div class=\"flex gap-15 items-center\">
+                         <span class=\"tag-indigo small\">Verified Node</span>
+                         <span class=\"text-faint small\">Latency: 2ms</span>
+                    </div>
                 </div>
             ).join('');
             initPremiumEffects();

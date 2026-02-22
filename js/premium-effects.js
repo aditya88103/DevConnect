@@ -67,8 +67,40 @@ function initPremiumEffects() {
         const orbs = document.querySelectorAll('.orb');
         const scrolled = window.scrollY;
         orbs.forEach((orb, i) => {
-            const speed = (i + 1) * 0.2;
-            orb.style.transform = `translateY(${scrolled * speed}px)`;
+            const speed = (i + 1) * 0.15;
+            orb.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.05}deg)`;
         });
     });
+
+    // 6. Magnetic Elements (Tactile pull)
+    document.addEventListener('mousemove', (e) => {
+        const magneticElements = document.querySelectorAll('.magnetic');
+        magneticElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const distance = Math.sqrt(x * x + y * y);
+
+            if (distance < 80) {
+                el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            } else {
+                el.style.transform = `translate(0, 0)`;
+            }
+        });
+    });
+
+    // 7. Page Loader Removal
+    window.addEventListener('load', () => {
+        const loader = document.querySelector('.page-loader');
+        if (loader) {
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                // Trigger entry animations
+                document.querySelectorAll('.reveal, .stagger-reveal').forEach(el => {
+                    premiumObserver.observe(el);
+                });
+            }, 800);
+        }
+    });
 }
+

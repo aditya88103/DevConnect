@@ -3,50 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile | DevConnect</title>
+    <title>Edit Identity | DevConnect</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/premium-global.css">
 </head>
 <body class="premium-layout">
+    <div class="page-loader"><div class="loader-orb"></div></div>
     <div class="scroll-progress"></div>
     <div class="cursor-glow"></div>
     <div class="orb-container"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
     
-    <nav class="navbar scrolled"><div class="nav-container"><a href="freelancer-dashboard.html" class="logo">DevConnect</a></div></nav>
+    <nav class="navbar scrolled"><div class="nav-container">
+        <a href="freelancer-dashboard.html" class="logo magnetic">DevConnect</a>
+    </div></nav>
 
     <main class="main-content container mt-nav">
-        <div class="aura-card p-40 reveal" style="max-width: 800px; margin: 0 auto;">
+        <div class="aura-card neon-border p-40 reveal" style="max-width: 800px; margin: 0 auto; background: rgba(15, 23, 42, 0.4);">
             <header class="mb-40">
-                <span class="section-tag-p">Profile Settings</span>
-                <h1 class="shimmer-text">Personal Details</h1>
-                <p class="text-muted">Fill in your professional information to get discovered.</p>
+                <span class="section-tag-p">Identity Matrix Settings</span>
+                <h1 class="shimmer-text" style=\"font-size: 3rem;\">Profile Configuration</h1>
+                <p class="text-muted">Define your professional parameters to optimize discovery.</p>
             </header>
 
             <form id="profileForm" class="stagger-reveal">
                 <div class="grid-2 gap-20 mb-20">
                     <div class="form-group">
-                        <label class="white mb-8 block">Project Title/Niche</label>
-                        <input type="text" id="title" class="glass-input w-100" placeholder="e.g. Senior UI/UX Designer" required>
+                        <label class="white mb-8 block font-600 small uppercase letter-spacing-1">Professional Niche</label>
+                        <input type="text" id="title" class="glass-input-premium w-100" placeholder="e.g. Senior Full-Stack Architect" required>
                     </div>
                     <div class="form-group">
-                        <label class="white mb-8 block">Location</label>
-                        <input type="text" id="location" class="glass-input w-100" placeholder="e.g. New York, USA" required>
+                        <label class="white mb-8 block font-600 small uppercase letter-spacing-1">Geographic Node</label>
+                        <input type="text" id="location" class="glass-input-premium w-100" placeholder="e.g. Remote / Mars" required>
                     </div>
                 </div>
 
                 <div class="form-group mb-20">
-                    <label class="white mb-8 block">Professional Bio</label>
-                    <textarea id="bio" class="glass-input w-100" rows="5" placeholder="Tell owners about your experience..." required></textarea>
+                    <label class="white mb-8 block font-600 small uppercase letter-spacing-1">Professional Abstract (Bio)</label>
+                    <textarea id="bio" class="glass-input-premium w-100" rows="5" placeholder="Highlight your unique value proposition..." required></textarea>
                 </div>
 
-                <div class="form-group mb-30">
-                    <label class="white mb-8 block">Skills (Comma separated)</label>
-                    <input type="text" id="skills" class="glass-input w-100" placeholder="React, Node.js, Figma, Python" required>
+                <div class="form-group mb-40">
+                    <label class="white mb-8 block font-600 small uppercase letter-spacing-1">Skill Array (Comma separated)</label>
+                    <input type="text" id="skills" class="glass-input-premium w-100" placeholder="React, Kubernetes, Web3, Python" required>
                 </div>
 
                 <div class="flex gap-20">
-                    <button type="submit" class="liquid-btn primary-btn" style="flex: 2;">Save Profile</button>
-                    <a href="freelancer-dashboard.html" class="cta-outline" style="flex: 1; text-align: center;">Cancel</a>
+                    <button type="submit" class="liquid-btn primary-btn magnetic" style="flex: 2;">Deploy Update</button>
+                    <a href="freelancer-dashboard.html" class="cta-outline magnetic" style="flex: 1; text-align: center;">Cancel</a>
                 </div>
             </form>
         </div>
@@ -73,7 +76,7 @@
                 skills: document.getElementById('skills').value.split(',').map(s => s.trim())
             };
             updateUser(updated);
-            alert('Profile updated successfully!');
+            alert('Identity sync complete!');
             window.location.href = 'freelancer-dashboard.html';
         };
     </script>

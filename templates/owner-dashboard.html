@@ -8,26 +8,52 @@
     <link rel="stylesheet" href="../css/premium-global.css">
 </head>
 <body class="premium-layout">
+    <div class="page-loader"><div class="loader-orb"></div></div>
     <div class="scroll-progress"></div>
     <div class="cursor-glow"></div>
-    <div class="orb-container">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
+    <div class="orb-container"><div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div></div>
+
     <nav class="navbar scrolled"><div class="nav-container">
-        <div class="nav-left"><a href="index.html" class="logo">DevConnect</a></div>
+        <div class="nav-left"><a href="index.html" class="logo magnetic">DevConnect</a></div>
         <div class="nav-right">
-            <button class="logoutButton" data-action="logout-premium">Log Out</button>
+            <button class="logoutButton magnetic" data-action="logout-premium">Log Out</button>
         </div>
     </div></nav>
+
     <main class="main-content container mt-nav">
         <div class="dashboard-header reveal">
-            <span class="section-tag-p">Management</span>
-            <h1 class="shimmer-text">Dashboard</h1>
+            <span class="section-tag-p">Project Owner Portal</span>
+            <h1 class="shimmer-text">Management Center</h1>
+            <p class="text-muted">Orchestrate your vision and collaborate with world-class talent.</p>
         </div>
-        <div id="requirementsContainer" class="stagger-reveal"></div>
+
+        <div class="grid-2-1">
+            <div class="column-left">
+                <section class="reveal">
+                    <h2 class="white mb-24">Live Requirements</h2>
+                    <div id="requirementsContainer" class="stagger-reveal">
+                        <!-- Content via JS -->
+                    </div>
+                </section>
+            </div>
+            <div class="column-right">
+                <section class="aura-card neon-border reveal p-30 mb-30" style="background: rgba(15, 23, 42, 0.4);">
+                    <h3 class="white mb-20">New Venture</h3>
+                    <p class="small text-muted mb-24">Unlock new possibilities. Describe your next project to attract the best freelancers.</p>
+                    <a href="owner-requirement-form.html" class="liquid-btn primary-btn w-100 block-center magnetic" style="text-align:center;">Post Requirement</a>
+                </section>
+
+                <section class="aura-card reveal p-30" style="background: rgba(15, 23, 42, 0.4);">
+                    <h3 class="white mb-20">Network Status</h3>
+                    <div class="flex items-center gap-15 mb-15">
+                        <div style=\"width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;\"></div>
+                        <span class=\"small white\">Freelancers Online: 142</span>
+                    </div>
+                </section>
+            </div>
+        </div>
     </main>
+
     <script src="../js/storage.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/premium-effects.js"></script>
@@ -36,8 +62,25 @@
         const user = getCurrentUser();
         const reqs = getClientRequirements().filter(r => r.userId === user.id);
         const container = document.getElementById('requirementsContainer');
-        container.innerHTML = reqs.map(r => '<div class=\"aura-card p-24 mb-20\">' + r.projectType + '</div>').join('');
-        initPremiumEffects();
+
+        if (reqs.length === 0) {
+            container.innerHTML = <div class=\"aura-card p-40 text-center\"><p class=\"text-muted\">Your pipeline is empty. Start by posting a requirement.</p></div>;
+        } else {
+            container.innerHTML = reqs.map(r => 
+                <div class=\"aura-card gooey-card p-24 mb-20 interactive\">
+                    <div class=\"flex flex-between mb-15\">
+                        <h4 class=\"white shimmer-text\"></h4>
+                        <div class=\"tag-green\"></div>
+                    </div>
+                    <p class=\"text-muted small mb-20 line-clamp-2\"></p>
+                    <div class=\"flex gap-20 small text-faint items-center\">
+                        <span class=\"tag-indigo\">Active</span>
+                        <span>Deadline: </span>
+                    </div>
+                </div>
+            ).join('');
+            initPremiumEffects();
+        }
     </script>
 </body>
 </html>

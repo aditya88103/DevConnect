@@ -8,50 +8,51 @@
     <link rel="stylesheet" href="../css/premium-global.css">
 </head>
 <body class="premium-layout">
+    <div class="page-loader"><div class="loader-orb"></div></div>
     <div class="scroll-progress"></div>
     <div class="cursor-glow"></div>
     <div class="orb-container"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
 
-    <nav class="navbar scrolled"><div class="nav-container"><a href="owner-dashboard.html" class="logo">DevConnect</a></div></nav>
+    <nav class="navbar scrolled"><div class="nav-container"><a href="owner-dashboard.html" class="logo magnetic">DevConnect</a></div></nav>
 
     <main class="main-content container mt-nav">
-        <div class="aura-card p-40 reveal" style="max-width: 800px; margin: 0 auto;">
+        <div class="aura-card neon-border p-40 reveal" style="max-width: 800px; margin: 0 auto; background: rgba(15, 23, 42, 0.4);">
             <header class="mb-40">
-                <span class="section-tag-p">New Project</span>
-                <h1 class="shimmer-text">Define Your Requirement</h1>
-                <p class="text-muted">Explain what you need to build and find the perfect match.</p>
+                <span class="section-tag-p">New Mission Assignment</span>
+                <h1 class="shimmer-text" style=\"font-size: 3rem;\">Project Definition</h1>
+                <p class="text-muted">Broadcast your requirements to the global freelancer network.</p>
             </header>
 
             <form id="requirementForm" class="stagger-reveal">
-                <div class="form-group mb-20">
-                    <label class="white mb-8 block">Project Type</label>
-                    <select id="projectType" class="glass-input w-100" required>
-                        <option value=\"Web Development\">Web Development</option>
-                        <option value=\"Mobile App\">Mobile App</option>
-                        <option value=\"UI/UX Design\">UI/UX Design</option>
-                        <option value=\"Graphic Design\">Graphic Design</option>
+                <div class="form-group mb-24">
+                    <label class="white mb-8 block font-600 small uppercase letter-spacing-1">Sector Class (Project Type)</label>
+                    <select id="projectType" class="glass-input-premium w-100" required>
+                        <option value=\"Web Development\">Web Core Development</option>
+                        <option value=\"Mobile App\">Mobile Interface Design</option>
+                        <option value=\"UI/UX Design\">User Experience Research</option>
+                        <option value=\"Graphic Design\">Visual Asset Creation</option>
                     </select>
                 </div>
 
                 <div class="grid-2 gap-20 mb-20">
                     <div class="form-group">
-                        <label class="white mb-8 block">Estimated Budget</label>
-                        <input type="text" id="budget" class="glass-input w-100" placeholder=\"e.g.  - \" required>
+                        <label class="white mb-8 block font-600 small uppercase letter-spacing-1">Resource Allocation (Budget)</label>
+                        <input type="text" id="budget" class="glass-input-premium w-100" placeholder=\"e.g. 5,000 - 10,000 Credits\" required>
                     </div>
                     <div class="form-group">
-                        <label class="white mb-8 block">Preferred Deadline</label>
-                        <input type="date" id="deadline" class="glass-input w-100" required>
+                        <label class="white mb-8 block font-600 small uppercase letter-spacing-1">Target Completion (Deadline)</label>
+                        <input type="date" id="deadline" class="glass-input-premium w-100" required>
                     </div>
                 </div>
 
-                <div class="form-group mb-30">
-                    <label class="white mb-8 block">Project Description</label>
-                    <textarea id="description" class="glass-input w-100" rows=\"6\" placeholder=\"Describe the tasks, goals, and required skills...\" required></textarea>
+                <div class="form-group mb-40">
+                    <label class="white mb-8 block font-600 small uppercase letter-spacing-1">Project Specification</label>
+                    <textarea id="description" class="glass-input-premium w-100" rows=\"6\" placeholder=\"Detailed technical requirements and mission goals...\" required></textarea>
                 </div>
 
                 <div class="flex gap-20">
-                    <button type="submit" class="liquid-btn primary-btn" style="flex: 2;">Post Requirement</button>
-                    <a href="owner-dashboard.html" class="cta-outline" style="flex: 1; text-align: center;">Discard</a>
+                    <button type="submit" class="liquid-btn primary-btn magnetic" style="flex: 2;">Broadcast Assignment</button>
+                    <a href="owner-dashboard.html" class="cta-outline magnetic" style="flex: 1; text-align: center;">Discard</a>
                 </div>
             </form>
         </div>
