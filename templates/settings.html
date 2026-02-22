@@ -1,208 +1,49 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings - DevConnect</title>
+    <title>Settings | DevConnect</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/premium-global.css">
 </head>
+<body class="premium-layout">
+    <div class="cursor-glow"></div>
+    <div class="orb-container"><div class="orb orb-1"></div></div>
 
-<body>
-    <div class="dashboard-container">
-        <div class="bg-animation">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-            <div class="circle circle-3"></div>
+    <nav class="navbar scrolled"><div class="nav-container"><a href="index.html" class="logo">DevConnect</a></div></nav>
+
+    <main class="main-content container mt-nav">
+        <div class="dashboard-header reveal mb-40">
+            <h1 class="shimmer-text">Account Settings</h1>
+            <p>Manage your account preferences and security.</p>
         </div>
 
-        <nav class="navbar">
-            <div class="navbar-content">
-                <a href="#" class="navbar-brand" id="dashboardLink">
-                    <svg class="navbar-brand-icon" viewBox="0 0 100 100" fill="none">
-                        <path d="M30 20L50 40L70 20M30 80L50 60L70 80M20 30L40 50L20 70M80 30L60 50L80 70"
-                            stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
-                        <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#667eea" />
-                                <stop offset="100%" style="stop-color:#764ba2" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    DevConnect
-                </a>
-                <div class="navbar-actions">
-                    <button class="logoutButton" data-action="logout-premium">
-                        <span class="button-text">Log Out</span>
-                        <div class="doorway">
-                            <svg class="door" viewBox="0 0 24 28" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Main door fill — CSS sets colour to indigo -->
-                                <rect x="0" y="0" width="24" height="28" rx="2"/>
-                                <!-- Upper left glass panel -->
-                                <rect x="2.5" y="2.5" width="8" height="10" rx="1" fill="rgba(255,255,255,0.25)"/>
-                                <!-- Upper right glass panel -->
-                                <rect x="13.5" y="2.5" width="8" height="10" rx="1" fill="rgba(255,255,255,0.25)"/>
-                                <!-- Lower panel -->
-                                <rect x="2.5" y="15.5" width="19" height="10" rx="1" fill="rgba(255,255,255,0.13)"/>
-                                <!-- Door knob -->
-                                <circle cx="19.5" cy="14.5" r="1.8" fill="rgba(255,255,255,0.9)"/>
-                                <circle cx="19.5" cy="14.5" r="0.8" fill="rgba(150,150,200,0.6)"/>
-                            </svg>
-                            <svg class="figure" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/>
-                            </svg>
-                        </div>
-                    </button>
+        <div class="stagger-reveal" style="max-width: 800px; margin: 0 auto;">
+            <section class="aura-card p-30 mb-24">
+                <h3 class="white mb-20">Security</h3>
+                <div class="flex flex-between items-center mb-15">
+                    <div><p class="white">Two-Factor Authentication</p><p class="text-faint small">Secure your account with 2FA</p></div>
+                    <button class="cta-outline">Enable</button>
                 </div>
-            </div>
-        </nav>
+            </section>
 
-        <main class="main-content">
-            <div class="page-header">
-                <h1 class="page-title">Settings</h1>
-                <p class="page-subtitle">Customize your experience</p>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Appearance</h2>
-                    <p class="card-subtitle">Choose how DevConnect looks to you</p>
+            <section class="aura-card p-30 mb-24">
+                <h3 class="white mb-20">Privacy</h3>
+                <div class="flex flex-between items-center">
+                    <div><p class="white">Profile Visibility</p><p class="text-faint small">Control who can see your profile</p></div>
+                    <span class="tag-green">Public</span>
                 </div>
+            </section>
 
-                <div class="form-group">
-                    <label>Theme</label>
-                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                        <button class="theme-option-btn" data-theme="light">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="12" r="5" />
-                                <line x1="12" y1="1" x2="12" y2="3" />
-                                <line x1="12" y1="21" x2="12" y2="23" />
-                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                                <line x1="1" y1="12" x2="3" y2="12" />
-                                <line x1="21" y1="12" x2="23" y2="12" />
-                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-                            </svg>
-                            <span>Light</span>
-                        </button>
-
-                        <button class="theme-option-btn" data-theme="dark">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                            </svg>
-                            <span>Dark</span>
-                        </button>
-
-                        <button class="theme-option-btn" data-theme="system">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                                <line x1="8" y1="21" x2="16" y2="21" />
-                                <line x1="12" y1="17" x2="12" y2="21" />
-                            </svg>
-                            <span>System</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Account Information</h2>
-                </div>
-
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" id="userName" readonly style="background: var(--bg-secondary);">
-                </div>
-
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="userEmail" readonly style="background: var(--bg-secondary);">
-                </div>
-
-                <div class="form-group">
-                    <label>Role</label>
-                    <input type="text" id="userRole" readonly
-                        style="background: var(--bg-secondary); text-transform: capitalize;">
-                </div>
-            </div>
-
-            <div class="card" style="border-color: var(--accent-orange);">
-                <div class="card-header">
-                    <h2 class="card-title" style="color: var(--accent-orange);">Danger Zone</h2>
-                    <p class="card-subtitle">Irreversible actions</p>
-                </div>
-
-                <button onclick="clearAllData()" class="cta-btn"
-                    style="background: var(--secondary-gradient); width: auto;">
-                    Clear All Data
-                </button>
-                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem;">
-                    This will delete all your data from this browser. This action cannot be undone.
-                </p>
-            </div>
-        </main>
-    </div>
-
+            <section class="aura-card p-30 border-red" style="border-color: rgba(239, 68, 68, 0.2);">
+                <h3 class="red mb-10">Danger Zone</h3>
+                <p class="text-muted small mb-20">Irreversible actions for your account.</p>
+                <button class="cta-outline" style="color: #ef4444; border-color: #ef4444;">Delete Account</button>
+            </section>
+        </div>
+    </main>
     <script src="../js/auth.js"></script>
-    <script src="../js/storage.js"></script>
-    <script src="../js/theme.js"></script>
-    <script>
-        requireAuth();
-
-        const user = getCurrentUser();
-
-        // Set dashboard link
-        const dashboardLink = document.getElementById('dashboardLink');
-        if (user.role === 'freelancer') {
-            dashboardLink.href = 'freelancer-dashboard.html';
-        } else {
-            dashboardLink.href = 'owner-dashboard.html';
-        }
-
-        // Load user info
-        document.getElementById('userName').value = user.name;
-        document.getElementById('userEmail').value = user.email;
-        let displayRole = user.role;
-        if (displayRole === 'client') displayRole = 'Project Owner';
-        document.getElementById('userRole').value = displayRole;
-
-        // Theme selection
-        const currentTheme = getCurrentTheme();
-        document.querySelectorAll('.theme-option-btn').forEach(btn => {
-            if (btn.dataset.theme === currentTheme) {
-                btn.style.background = 'var(--primary-gradient)';
-                btn.style.color = 'white';
-            }
-
-            btn.addEventListener('click', function () {
-                const theme = this.dataset.theme;
-                setTheme(theme);
-
-                // Update button styles
-                document.querySelectorAll('.theme-option-btn').forEach(b => {
-                    b.style.background = 'var(--bg-secondary)';
-                    b.style.color = 'var(--text-primary)';
-                });
-
-                this.style.background = 'var(--primary-gradient)';
-                this.style.color = 'white';
-            });
-        });
-
-        function clearAllData() {
-            if (confirm('Are you sure you want to clear all data? This will log you out and delete everything.')) {
-                if (confirm('This action cannot be undone. Are you absolutely sure?')) {
-                    localStorage.clear();
-                    sessionStorage.clear();
-                    alert('All data has been cleared.');
-                    window.location.href = 'index.html';
-                }
-            }
-        }
-    </script>
+    <script src="../js/premium-effects.js"></script>
 </body>
-
 </html>

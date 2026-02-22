@@ -1,145 +1,85 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Requirement - DevConnect</title>
+    <title>Post Requirement | DevConnect</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/premium-global.css">
 </head>
+<body class="premium-layout">
+    <div class="scroll-progress"></div>
+    <div class="cursor-glow"></div>
+    <div class="orb-container"><div class="orb orb-1"></div><div class="orb orb-2"></div></div>
 
-<body>
-    <div class="dashboard-container">
-        <div class="bg-animation">
-            <div class="circle circle-1"></div>
-            <div class="circle circle-2"></div>
-            <div class="circle circle-3"></div>
-        </div>
+    <nav class="navbar scrolled"><div class="nav-container"><a href="owner-dashboard.html" class="logo">DevConnect</a></div></nav>
 
-        <nav class="navbar">
-            <div class="navbar-content">
-                <a href="owner-dashboard.html" class="navbar-brand">
-                    <svg class="navbar-brand-icon" viewBox="0 0 100 100" fill="none">
-                        <path d="M30 20L50 40L70 20M30 80L50 60L70 80M20 30L40 50L20 70M80 30L60 50L80 70"
-                            stroke="url(#gradient)" stroke-width="4" stroke-linecap="round" />
-                        <defs>
-                            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#667eea" />
-                                <stop offset="100%" style="stop-color:#764ba2" />
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                    DevConnect
-                </a>
-                <div class="navbar-actions">
-                    <button class="logoutButton" data-action="logout-premium">
-                        <span class="button-text">Log Out</span>
-                        <div class="doorway">
-                            <svg class="door" viewBox="0 0 24 28" xmlns="http://www.w3.org/2000/svg">
-                                <!-- Main door fill — CSS sets colour to indigo -->
-                                <rect x="0" y="0" width="24" height="28" rx="2"/>
-                                <!-- Upper left glass panel -->
-                                <rect x="2.5" y="2.5" width="8" height="10" rx="1" fill="rgba(255,255,255,0.25)"/>
-                                <!-- Upper right glass panel -->
-                                <rect x="13.5" y="2.5" width="8" height="10" rx="1" fill="rgba(255,255,255,0.25)"/>
-                                <!-- Lower panel -->
-                                <rect x="2.5" y="15.5" width="19" height="10" rx="1" fill="rgba(255,255,255,0.13)"/>
-                                <!-- Door knob -->
-                                <circle cx="19.5" cy="14.5" r="1.8" fill="rgba(255,255,255,0.9)"/>
-                                <circle cx="19.5" cy="14.5" r="0.8" fill="rgba(150,150,200,0.6)"/>
-                            </svg>
-                            <svg class="figure" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/>
-                            </svg>
-                        </div>
-                    </button>
+    <main class="main-content container mt-nav">
+        <div class="aura-card p-40 reveal" style="max-width: 800px; margin: 0 auto;">
+            <header class="mb-40">
+                <span class="section-tag-p">New Project</span>
+                <h1 class="shimmer-text">Define Your Requirement</h1>
+                <p class="text-muted">Explain what you need to build and find the perfect match.</p>
+            </header>
+
+            <form id="requirementForm" class="stagger-reveal">
+                <div class="form-group mb-20">
+                    <label class="white mb-8 block">Project Type</label>
+                    <select id="projectType" class="glass-input w-100" required>
+                        <option value=\"Web Development\">Web Development</option>
+                        <option value=\"Mobile App\">Mobile App</option>
+                        <option value=\"UI/UX Design\">UI/UX Design</option>
+                        <option value=\"Graphic Design\">Graphic Design</option>
+                    </select>
                 </div>
-            </div>
-        </nav>
 
-        <main class="main-content">
-            <div class="page-header">
-                <h1 class="page-title">Post Your Requirement</h1>
-                <p class="page-subtitle">Tell freelancers what you're looking to build</p>
-            </div>
-
-            <form id="requirementForm" class="profile-form">
-                <div class="card">
-                    <div class="card-header">
-                        <h2 class="card-title">Project Details</h2>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="projectType">Project Type *</label>
-                            <select id="projectType" required>
-                                <option value="">Select project type</option>
-                                <option value="Website">Website</option>
-                                <option value="Web Application">Web Application</option>
-                                <option value="Mobile App">Mobile App</option>
-                                <option value="E-commerce">E-commerce</option>
-                                <option value="Portfolio">Portfolio</option>
-                                <option value="Landing Page">Landing Page</option>
-                                <option value="Dashboard">Dashboard</option>
-                                <option value="API Development">API Development</option>
-                                <option value="Other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="budget">Budget Range *</label>
-                            <select id="budget" required>
-                                <option value="">Select budget</option>
-                                <option value="Under $500">Under $500</option>
-                                <option value="$500 - $1,000">$500 - $1,000</option>
-                                <option value="$1,000 - $2,500">$1,000 - $2,500</option>
-                                <option value="$2,500 - $5,000">$2,500 - $5,000</option>
-                                <option value="$5,000 - $10,000">$5,000 - $10,000</option>
-                                <option value="$10,000+">$10,000+</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="deadline">Deadline *</label>
-                            <input type="date" id="deadline" required>
-                        </div>
-                    </div>
-
+                <div class="grid-2 gap-20 mb-20">
                     <div class="form-group">
-                        <label for="description">Project Description *</label>
-                        <textarea id="description" rows="4" required
-                            placeholder="Describe your project in detail..."></textarea>
+                        <label class="white mb-8 block">Estimated Budget</label>
+                        <input type="text" id="budget" class="glass-input w-100" placeholder=\"e.g.  - \" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="features">Key Features Required *</label>
-                        <textarea id="features" rows="3" required
-                            placeholder="List the main features you need (e.g., user authentication, payment integration, etc.)"></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="notes">Additional Notes</label>
-                        <textarea id="notes" rows="3"
-                            placeholder="Any other information freelancers should know..."></textarea>
+                        <label class="white mb-8 block">Preferred Deadline</label>
+                        <input type="date" id="deadline" class="glass-input w-100" required>
                     </div>
                 </div>
 
-                <div class="form-actions">
-                    <button type="submit" class="submit-btn">
-                        Post Requirement
-                        <span class="btn-arrow">?</span>
-                    </button>
-                    <a href="owner-dashboard.html" class="cancel-btn">Cancel</a>
+                <div class="form-group mb-30">
+                    <label class="white mb-8 block">Project Description</label>
+                    <textarea id="description" class="glass-input w-100" rows=\"6\" placeholder=\"Describe the tasks, goals, and required skills...\" required></textarea>
+                </div>
+
+                <div class="flex gap-20">
+                    <button type="submit" class="liquid-btn primary-btn" style="flex: 2;">Post Requirement</button>
+                    <a href="owner-dashboard.html" class="cta-outline" style="flex: 1; text-align: center;">Discard</a>
                 </div>
             </form>
-        </main>
-    </div>
+        </div>
+    </main>
 
-    <script src="../js/auth.js"></script>
     <script src="../js/storage.js"></script>
-    <script src="../js/theme.js"></script>
-    <script src="../js/owner.js"></script>
-</body>
+    <script src="../js/auth.js"></script>
+    <script src="../js/premium-effects.js"></script>
+    <script>
+        requireAuth('owner');
+        const user = getCurrentUser();
 
+        document.getElementById('requirementForm').onsubmit = (e) => {
+            e.preventDefault();
+            const req = {
+                id: Date.now().toString(),
+                userId: user.id,
+                projectType: document.getElementById('projectType').value,
+                budget: document.getElementById('budget').value,
+                deadline: document.getElementById('deadline').value,
+                description: document.getElementById('description').value,
+                createdAt: new Date().toISOString()
+            };
+            const reqs = getClientRequirements();
+            reqs.push(req);
+            saveClientRequirements(reqs);
+            window.location.href = 'owner-dashboard.html';
+        };
+    </script>
+</body>
 </html>

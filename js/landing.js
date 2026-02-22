@@ -15,11 +15,20 @@ const revealObserver = new IntersectionObserver((entries) => {
         if (entry.isIntersecting) {
             entry.target.classList.add('active');
             entry.target.classList.add('visible'); // handles both classes
+
+            // If it's a stagger group, find its children and add delays if not present
+            if (entry.target.classList.contains('stagger-reveal')) {
+                entry.target.querySelectorAll(':scope > *').forEach((child, i) => {
+                    if (!child.style.animationDelay) {
+                        child.style.animationDelay = `${i * 0.1}s`;
+                    }
+                });
+            }
         }
     });
 }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
 
-document.querySelectorAll('.reveal, .fade-in').forEach(el => revealObserver.observe(el));
+document.querySelectorAll('.reveal, .fade-in, .stagger-reveal').forEach(el => revealObserver.observe(el));
 
 // ==================== SCROLL PROGRESS BAR ====================
 const progressBar = document.querySelector('.scroll-progress');
@@ -49,22 +58,17 @@ if (glow) {
     });
 }
 
-// Role card tilt removed as per request
-/*
-document.querySelectorAll('.role-card').forEach(card => {
-    card.addEventListener('mousemove', (e) => {
+// ==================== AURA CARD MOUSE TRACKING ====================
+document.addEventListener('mousemove', (e) => {
+    document.querySelectorAll('.aura-card').forEach(card => {
         const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const cx = rect.width / 2, cy = rect.height / 2;
-        const rx = (y - cy) / 25, ry = (cx - x) / 25;
-        card.style.transform = `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-10px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--mouse-x', `${x}%`);
+        card.style.setProperty('--mouse-y', `${y}%`);
     });
 });
-*/
+
 
 // ==================== FEATURE CARD STAGGER ====================
 document.querySelectorAll('.feature-card').forEach((card, i) => {
