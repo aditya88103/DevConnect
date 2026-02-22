@@ -4,12 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freelancer Auth - DevConnect</title>
+    <title>Freelancer Login & Signup — DevConnect</title>
+    <meta name="description"
+        content="Sign in or create your Freelancer account on DevConnect. Start finding real projects today.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/auth-premium.css">
     <link rel="stylesheet" href="css/premium-global.css">
 </head>
 
 <body>
+    <!-- Back -->
     <a href="index.html" class="back-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19L5 12L12 5" />
@@ -17,6 +23,7 @@
         Back to Home
     </a>
 
+    <!-- Floating BG circles -->
     <div class="area">
         <ul class="circles">
             <li></li>
@@ -32,169 +39,314 @@
         </ul>
     </div>
 
+    <!-- Main Card -->
     <div class="container" id="container">
-        <!-- Sign Up Form -->
+
+        <!-- ── SIGN UP FORM ── -->
         <div class="form-container sign-up-container">
-            <form id="signupForm">
+            <form id="signupForm" autocomplete="off">
                 <h1>Create Account</h1>
                 <span>Freelancer Registration</span>
+
                 <div class="input-group">
-                    <input type="text" id="signupName" placeholder="Full Name" required />
+                    <input type="text" id="signupName" placeholder="Full Name" required autocomplete="off" />
                 </div>
                 <div class="input-group">
-                    <input type="email" id="signupEmail" placeholder="Email" required />
+                    <input type="email" id="signupEmail" placeholder="Email Address" required autocomplete="off" />
                 </div>
                 <div class="input-group">
-                    <input type="password" id="signupPassword" placeholder="Password" required minlength="6" />
+                    <input type="password" id="signupPassword" placeholder="Password (min 6 chars)" required
+                        minlength="6" autocomplete="new-password" />
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
                 </div>
                 <div class="input-group">
-                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required
+                        autocomplete="new-password" />
                 </div>
-                <button type="submit" class="liquid-btn">Sign Up</button>
+
+                <button type="submit" id="signupBtn">
+                    <span id="signupBtnText">Create Freelancer Account</span>
+                </button>
+
                 <div class="mobile-switch">
                     Already have an account? <span id="toSignInMobile">Sign In</span>
                 </div>
             </form>
         </div>
 
-        <!-- Sign In Form -->
+        <!-- ── SIGN IN FORM ── -->
         <div class="form-container sign-in-container">
-            <form id="loginForm">
-                <h1>Sign In</h1>
-                <span>Freelancer Login</span>
+            <form id="loginForm" autocomplete="off">
+                <h1>Welcome Back</h1>
+                <span>Sign in to your Freelancer account</span>
+
                 <div class="input-group">
-                    <input type="email" id="loginEmail" placeholder="Email" required />
+                    <input type="email" id="loginEmail" placeholder="Email Address" required autocomplete="off" />
                 </div>
                 <div class="input-group">
-                    <input type="password" id="loginPassword" placeholder="Password" required />
+                    <input type="password" id="loginPassword" placeholder="Password" required
+                        autocomplete="current-password" />
                 </div>
-                <a href="javascript:void(0)" onclick="showForgotPasswordModal()"
-                    style="color: var(--text-secondary); font-size: 13px; text-decoration: none; margin: 10px 0;">Forgot
-                    your password?</a>
-                <button type="submit" class="liquid-btn">Sign In</button>
+
+                <a href="javascript:void(0)"
+                    style="color:#818cf8;font-size:0.82rem;align-self:flex-end;margin:6px 0;text-decoration:none;">Forgot
+                    password?</a>
+
+                <button type="submit" id="loginBtn">
+                    <span id="loginBtnText">Sign In</span>
+                </button>
+
                 <div class="mobile-switch">
                     Don't have an account? <span id="toSignUpMobile">Sign Up</span>
                 </div>
             </form>
         </div>
 
-        <!-- Overlay -->
+        <!-- ── OVERLAY ── -->
         <div class="overlay-container">
             <div class="overlay">
+
+                <!-- Left overlay (shown when in sign-up mode → prompt to sign in) -->
                 <div class="overlay-panel overlay-left">
+                    <div class="overlay-icon">👋</div>
                     <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your personal info</p>
+                    <p>Already have an account? Sign in and pick up where you left off.</p>
+
+                    <!-- REAL DATA: Active Projects count for freelancers -->
+                    <div class="overlay-social-proof">
+                        <div class="overlay-avatars" id="leftAvatars">
+                            <!-- filled by JS -->
+                        </div>
+                        <p><span id="leftProjectCount">0</span> active projects posted</p>
+                    </div>
+
+                    <div class="overlay-stats" id="leftStats">
+                        <div class="overlay-stat">
+                            <h3 id="stat-freelancers">0</h3>
+                            <p>Freelancers</p>
+                        </div>
+                        <div class="overlay-stat">
+                            <h3 id="stat-projects-left">0</h3>
+                            <p>Projects</p>
+                        </div>
+                    </div>
+
+                    <div class="overlay-tags">
+                        <span class="overlay-tag">💻 React</span>
+                        <span class="overlay-tag">🎨 UI/UX</span>
+                        <span class="overlay-tag">📱 Flutter</span>
+                        <span class="overlay-tag">⚙️ Node.js</span>
+                    </div>
+
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
+
+                <!-- Right overlay (shown when in sign-in mode → prompt to sign up) -->
                 <div class="overlay-panel overlay-right">
+                    <div class="overlay-icon">🚀</div>
                     <h1>Hello, Freelancer!</h1>
-                    <p>Enter your personal details and start your journey with us</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <p>Join the platform and start getting noticed by real project owners.</p>
+
+                    <!-- REAL DATA: Freelancer count  -->
+                    <div class="overlay-social-proof">
+                        <div class="overlay-avatars" id="rightAvatars">
+                            <!-- filled by JS -->
+                        </div>
+                        <p><span id="rightFreelancerCount">0</span> freelancers active</p>
+                    </div>
+
+                    <div class="overlay-stats">
+                        <div class="overlay-stat">
+                            <h3 id="stat-freelancers-r">0</h3>
+                            <p>Freelancers</p>
+                        </div>
+                        <div class="overlay-stat">
+                            <h3 id="stat-projects-r">0</h3>
+                            <p>Projects</p>
+                        </div>
+                        <div class="overlay-stat">
+                            <h3>98%</h3>
+                            <p>Satisfaction</p>
+                        </div>
+                    </div>
+
+                    <div class="overlay-tags">
+                        <span class="overlay-tag">✅ Free Profile</span>
+                        <span class="overlay-tag">📩 Direct Messages</span>
+                        <span class="overlay-tag">🏆 Get Hired</span>
+                    </div>
+
+                    <button class="ghost" id="signUp">Create Account</button>
                 </div>
+
             </div>
         </div>
-    </div>
+    </div><!-- /container -->
 
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/premium-global.js"></script>
     <script>
+        /* ── Panel toggle ── */
+        const container = document.getElementById('container');
         const signUpButton = document.getElementById('signUp');
         const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
-        const toSignUpMobile = document.getElementById('toSignUpMobile');
-        const toSignInMobile = document.getElementById('toSignInMobile');
+        const toSignUpMob = document.getElementById('toSignUpMobile');
+        const toSignInMob = document.getElementById('toSignInMobile');
 
-        // Redirect if already authenticated
         redirectIfAuthenticated();
 
-        // Toggle Panels
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
+        signUpButton.addEventListener('click', () => container.classList.add('right-panel-active'));
+        signInButton.addEventListener('click', () => container.classList.remove('right-panel-active'));
+        toSignUpMob?.addEventListener('click', () => container.classList.add('right-panel-active'));
+        toSignInMob?.addEventListener('click', () => container.classList.remove('right-panel-active'));
+
+        if (new URLSearchParams(window.location.search).get('action') === 'signup')
+            container.classList.add('right-panel-active');
+
+        /* ══════════════════════════════════════════
+           REAL DATA from localStorage
+        ══════════════════════════════════════════ */
+        function loadRealStats() {
+            const users = getUsers();
+            const freelancers = users.filter(u => u.role === 'freelancer');
+            const projects = getClientRequirements();
+
+            const fCount = freelancers.length;
+            const pCount = projects.length;
+
+            /* Update all stat numbers with animated counting */
+            animateCount('stat-freelancers', fCount);
+            animateCount('stat-projects-left', pCount);
+            animateCount('stat-freelancers-r', fCount);
+            animateCount('stat-projects-r', pCount);
+
+            /* Update social proof text */
+            document.getElementById('leftProjectCount').textContent = pCount;
+            document.getElementById('rightFreelancerCount').textContent = fCount;
+
+            /* Build avatar initials from real recent freelancers */
+            const recent = freelancers.slice(-3);
+            const leftAv = document.getElementById('leftAvatars');
+            const rightAv = document.getElementById('rightAvatars');
+
+            function buildAvatars(container, list) {
+                container.innerHTML = '';
+                if (list.length === 0) {
+                    // default placeholder
+                    ['?', '?', '?'].forEach((_, i) => {
+                        const d = document.createElement('div');
+                        d.className = 'overlay-avatar';
+                        d.textContent = '–';
+                        container.appendChild(d);
+                    });
+                    return;
+                }
+                list.forEach(u => {
+                    const d = document.createElement('div');
+                    d.className = 'overlay-avatar';
+                    const initials = u.name
+                        ? u.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+                        : u.email.slice(0, 2).toUpperCase();
+                    d.textContent = initials;
+                    container.appendChild(d);
+                });
+            }
+
+            buildAvatars(leftAv, recent);
+            buildAvatars(rightAv, recent);
+        }
+
+        /* Smooth number counter */
+        function animateCount(elId, target) {
+            const el = document.getElementById(elId);
+            if (!el) return;
+            const duration = 1000;
+            const step = Math.ceil(target / 40);
+            let current = 0;
+            const timer = setInterval(() => {
+                current = Math.min(current + step, target);
+                el.textContent = current;
+                if (current >= target) clearInterval(timer);
+            }, duration / 40);
+        }
+
+        loadRealStats();
+
+        /* ── Password Strength ── */
+        const pwInput = document.getElementById('signupPassword');
+        const fill = document.getElementById('strengthFill');
+        pwInput.addEventListener('input', () => {
+            const v = pwInput.value;
+            let score = 0;
+            if (v.length >= 6) score++;
+            if (v.length >= 10) score++;
+            if (/[A-Z]/.test(v)) score++;
+            if (/[0-9]/.test(v)) score++;
+            if (/[^A-Za-z0-9]/.test(v)) score++;
+            const colors = ['#ef4444', '#f97316', '#f59e0b', '#22c55e', '#10b981'];
+            fill.style.width = (score * 20) + '%';
+            fill.style.background = colors[score - 1] || 'transparent';
         });
 
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-
-        toSignUpMobile.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
-        });
-
-        toSignInMobile.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-
-        // Login Logic
+        /* ── Login logic ── */
         document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim().toLowerCase();
             const password = document.getElementById('loginPassword').value;
-            const role = 'freelancer';
+            const btn = document.getElementById('loginBtn');
+            const text = document.getElementById('loginBtnText');
 
-            const users = getUsers();
-            const user = users.find(u => u.email === email && u.password === password && u.role === role);
+            btn.disabled = true; text.textContent = 'Signing in…';
 
-            if (!user) {
-                // Check if user exists with different role
-                const anyUser = users.find(u => u.email === email && u.password === password);
-                if (anyUser) {
-                    const displayRole = anyUser.role === 'client' ? 'Project Owner' : 'Freelancer';
-                    showToast(`You are registered as a ${displayRole}. Please login on the correct page!`);
-                } else {
-                    showToast('Invalid email or password!');
+            setTimeout(() => {
+                const users = getUsers();
+                const user = users.find(u => u.email === email && u.password === password && u.role === 'freelancer');
+                if (!user) {
+                    const any = users.find(u => u.email === email && u.password === password);
+                    showToast(any ? 'You are a Project Owner — use Owner Login.' : 'Invalid email or password!');
+                    btn.disabled = false; text.textContent = 'Sign In';
+                    return;
                 }
-                return;
-            }
-
-            login(user);
-            window.location.href = 'freelancer-dashboard.html';
+                login(user); text.textContent = '✓ Success!';
+                setTimeout(() => window.location.href = 'freelancer-dashboard.html', 600);
+            }, 800);
         });
 
-        // Signup Logic
+        /* ── Signup logic ── */
         document.getElementById('signupForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const name = document.getElementById('signupName').value.trim();
             const email = document.getElementById('signupEmail').value.trim().toLowerCase();
             const password = document.getElementById('signupPassword').value;
-            const confirmPass = document.getElementById('confirmPassword').value;
-            const role = 'freelancer';
+            const confirm = document.getElementById('confirmPassword').value;
+            const btn = document.getElementById('signupBtn');
+            const text = document.getElementById('signupBtnText');
 
-            if (password !== confirmPass) {
-                showToast('Passwords do not match!');
-                return;
-            }
+            if (password !== confirm) return showToast('Passwords do not match!');
 
-            const users = getUsers();
-            if (users.find(u => u.email === email)) {
-                showToast('Email already registered!');
-                return;
-            }
+            btn.disabled = true; text.textContent = 'Creating account…';
 
-            const newUser = {
-                id: generateId(),
-                name,
-                email,
-                password,
-                role,
-                createdAt: new Date().toISOString()
-            };
-
-            users.push(newUser);
-            saveUsers(users);
-            login(newUser);
-            window.location.href = 'freelancer-profile-form.html';
+            setTimeout(() => {
+                const users = getUsers();
+                if (users.find(u => u.email === email)) {
+                    showToast('Email already registered!');
+                    btn.disabled = false; text.textContent = 'Create Freelancer Account';
+                    return;
+                }
+                const newUser = { id: generateId(), name, email, password, role: 'freelancer', createdAt: new Date().toISOString() };
+                users.push(newUser); saveUsers(users); login(newUser);
+                text.textContent = '✓ Registered!';
+                /* Re-render stats with updated count */
+                loadRealStats();
+                setTimeout(() => window.location.href = 'freelancer-profile-form.html', 600);
+            }, 900);
         });
-
-        // Auto-switch based on URL
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('action') === 'signup') {
-            container.classList.add("right-panel-active");
-        }
     </script>
-    <!-- Liquid Filter -->
-    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg"
-        version="1.1">
+
+    <svg style="visibility:hidden;position:absolute" width="0" height="0">
         <defs>
             <filter id="goo">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />

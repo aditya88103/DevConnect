@@ -896,28 +896,9 @@ body {
     gap: var(--spacing-md);
 }
 
+/* theme-toggle removed — dark mode only */
 .theme-toggle {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: none;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all var(--transition-fast);
-}
-
-.theme-toggle:hover {
-    background: var(--accent-purple);
-    color: white;
-}
-
-.theme-toggle svg {
-    width: 20px;
-    height: 20px;
+    display: none !important;
 }
 
 .notification-btn {

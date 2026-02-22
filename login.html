@@ -4,123 +4,567 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Role - DevConnect</title>
-    <link rel="stylesheet" href="css/auth-premium.css">
+    <title>Login — DevConnect</title>
+    <meta name="description" content="Login to DevConnect as a Freelancer or Project Owner.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
-        .role-selection-container {
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0b0f1e;
+            min-height: 100vh;
             display: flex;
-            gap: 30px;
-            padding: 40px;
-            flex-wrap: wrap;
+            align-items: center;
             justify-content: center;
+            overflow-x: hidden;
+            overflow-y: auto;
+            position: relative;
+            color: #fff;
+            padding: 1.5rem 0;
         }
 
-        .role-choice-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 40px;
-            width: 300px;
-            text-align: center;
-            transition: 0.4s;
-            cursor: pointer;
-            text-decoration: none;
-            color: var(--text-primary);
+        /* Animated BG */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse 700px 600px at 20% 30%, rgba(99, 102, 241, 0.18), transparent 60%),
+                radial-gradient(ellipse 600px 500px at 80% 70%, rgba(168, 85, 247, 0.14), transparent 60%);
+            animation: bgShift 10s ease-in-out infinite alternate;
         }
 
-        .role-choice-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary-color);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        @keyframes bgShift {
+            from {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1.05);
+            }
         }
 
-        .role-icon-large {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 20px;
-            color: var(--primary-color);
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
         }
 
-        .role-choice-card h2 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
+        /* Floating circles */
+        .circles {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .role-choice-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.5;
+        .circles li {
+            position: absolute;
+            display: block;
+            list-style: none;
+            bottom: -200px;
+            border-radius: 50%;
+            animation: circleRise 20s linear infinite;
+            opacity: 0;
         }
 
-        .page-title {
-            text-align: center;
-            margin-bottom: 40px;
+        .circles li:nth-child(1) {
+            left: 15%;
+            width: 70px;
+            height: 70px;
+            background: rgba(99, 102, 241, 0.15);
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .circles li:nth-child(2) {
+            left: 75%;
+            width: 30px;
+            height: 30px;
+            background: rgba(168, 85, 247, 0.12);
+            animation-delay: 4s;
+            animation-duration: 14s;
+        }
+
+        .circles li:nth-child(3) {
+            left: 45%;
+            width: 20px;
+            height: 20px;
+            background: rgba(99, 102, 241, 0.10);
+            animation-delay: 8s;
+            animation-duration: 16s;
+        }
+
+        .circles li:nth-child(4) {
+            left: 60%;
+            width: 50px;
+            height: 50px;
+            background: rgba(168, 85, 247, 0.08);
+            animation-delay: 2s;
+            animation-duration: 22s;
+        }
+
+        .circles li:nth-child(5) {
+            left: 30%;
+            width: 14px;
+            height: 14px;
+            background: rgba(255, 255, 255, 0.08);
+            animation-delay: 6s;
+            animation-duration: 12s;
+        }
+
+        @keyframes circleRise {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.7;
+            }
+
+            90% {
+                opacity: 0.4;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Main card */
+        .login-card {
+            position: relative;
             z-index: 10;
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 28px;
+            padding: 2.5rem 2.5rem;
+            width: 460px;
+            max-width: 95vw;
+            max-height: 95vh;
+            overflow-y: auto;
+            text-align: center;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+            animation: cardIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+            /* hide scrollbar but keep functionality */
+            scrollbar-width: none;
         }
 
-        .page-title h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        .login-card::-webkit-scrollbar {
+            display: none;
         }
 
-        .page-title p {
-            color: var(--text-secondary);
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: scale(0.85) translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* Logo */
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo span {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+        }
+
+        /* Badge */
+        .login-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.15);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #818cf8;
+            border-radius: 100px;
+            padding: 5px 14px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #6366f1;
+            box-shadow: 0 0 8px rgba(99, 102, 241, 0.8);
+            animation: pulse 2s ease infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5
+            }
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Role cards */
+        .role-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .role-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.2rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1.5px solid rgba(255, 255, 255, 0.07);
+            border-radius: 16px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-option::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--role-grad);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .role-option:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: transparent;
+        }
+
+        .role-option:hover::before {
+            opacity: 0.12;
+        }
+
+        .role-option.freelancer {
+            --role-grad: linear-gradient(135deg, #6366f1, #a855f7);
+        }
+
+        .role-option.owner {
+            --role-grad: linear-gradient(135deg, #f59e0b, #ef4444);
+        }
+
+        .role-option:hover.freelancer {
+            border-color: rgba(99, 102, 241, 0.5);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .role-option:hover.owner {
+            border-color: rgba(245, 158, 11, 0.5);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.2);
+        }
+
+        .role-icon-wrap {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .freelancer .role-icon-wrap {
+            background: rgba(99, 102, 241, 0.15);
+        }
+
+        .owner .role-icon-wrap {
+            background: rgba(245, 158, 11, 0.15);
+        }
+
+        .role-text {
+            text-align: left;
+            position: relative;
+            z-index: 1;
+        }
+
+        .role-text h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .role-text p {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+
+        .role-arrow {
+            margin-left: auto;
+            position: relative;
+            z-index: 1;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+        }
+
+        .role-option:hover .role-arrow {
+            transform: translateX(4px);
+        }
+
+        .role-arrow svg {
+            width: 16px;
+            height: 16px;
+            color: #94a3b8;
+        }
+
+        /* Divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #475569;
+            font-size: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+        /* Back link */
+        .back-link {
+            color: #64748b;
+            font-size: 0.82rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: #94a3b8;
+        }
+
+        .back-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Floating emoji decoration */
+        .floaters {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floater {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.35;
+            animation: floatEmoji 8s ease-in-out infinite;
+        }
+
+        .floater:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floater:nth-child(2) {
+            top: 20%;
+            right: 8%;
+            animation-delay: 2s;
+        }
+
+        .floater:nth-child(3) {
+            bottom: 20%;
+            left: 8%;
+            animation-delay: 4s;
+        }
+
+        .floater:nth-child(4) {
+            bottom: 10%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+
+        @keyframes floatEmoji {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(-10deg);
+            }
+
+            50% {
+                transform: translateY(-18px) rotate(10deg);
+            }
         }
     </style>
 </head>
 
 <body>
-    <a href="index.html" class="back-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M19 12H5M12 19L5 12L12 5" />
-        </svg>
-        Back to Home
-    </a>
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
 
-    <div class="area">
-        <ul class="circles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-    </div>
-
-    <div class="content-wrapper">
-        <div class="page-title">
-            <h1>Welcome to DevConnect</h1>
-            <p>Please select your account type to continue</p>
+    <div class="login-card">
+        <!-- Floating emoji decorations -->
+        <div class="floaters" aria-hidden="true">
+            <span class="floater">💻</span>
+            <span class="floater">🚀</span>
+            <span class="floater">💼</span>
+            <span class="floater">⭐</span>
         </div>
 
-        <div class="role-selection-container">
-            <a href="freelancer-auth.html" class="role-choice-card">
-                <svg class="role-icon-large" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M16 18L22 12L16 6M8 6L2 12L8 18" />
-                </svg>
-                <h2>Freelancer</h2>
-                <p>I want to showcase my skills and find projects to work on.</p>
+        <!-- Logo -->
+        <div class="logo">
+            <svg viewBox="0 0 40 40" fill="none">
+                <path d="M10 8L20 18L30 8M10 32L20 22L30 32M8 10L18 20L8 30M32 10L22 20L32 30" stroke="url(#lg)"
+                    stroke-width="2.5" stroke-linecap="round" />
+                <defs>
+                    <linearGradient id="lg" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#6366f1" />
+                        <stop offset="100%" stop-color="#a855f7" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            <span>DevConnect</span>
+        </div>
+
+        <div class="login-badge">
+            <span class="badge-dot"></span>
+            Choose how to continue
+        </div>
+
+        <h1>Who are you?</h1>
+        <p class="subtitle">Select your role to sign in or create an account</p>
+
+        <div class="role-options">
+            <!-- Freelancer -->
+            <a href="freelancer-auth.html" class="role-option freelancer" id="freelancerBtn">
+                <div class="role-icon-wrap">💻</div>
+                <div class="role-text">
+                    <h3>Freelancer</h3>
+                    <p>Showcase skills · Get hired · Build projects</p>
+                </div>
+                <div class="role-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </div>
             </a>
 
-            <a href="owner-auth.html" class="role-choice-card">
-                <svg class="role-icon-large" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                </svg>
-                <h2>Project Owner</h2>
-                <p>I want to post requirements and hire talented freelancers.</p>
+            <!-- Project Owner -->
+            <a href="owner-auth.html" class="role-option owner" id="ownerBtn">
+                <div class="role-icon-wrap">💼</div>
+                <div class="role-text">
+                    <h3>Project Owner</h3>
+                    <p>Post requirements · Find talent · Build fast</p>
+                </div>
+                <div class="role-arrow">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </div>
             </a>
         </div>
+
+        <div class="divider">or</div>
+
+        <a href="index.html" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19L5 12L12 5" />
+            </svg>
+            Back to Home
+        </a>
     </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // If already logged in, redirect to the correct dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            const session = getSession ? getSession() : null;
+            if (session) {
+                window.location.href = session.role === 'client'
+                    ? 'owner-dashboard.html'
+                    : 'freelancer-dashboard.html';
+            }
+        });
+    </script>
 </body>
 
 </html>

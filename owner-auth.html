@@ -4,12 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Owner Auth - DevConnect</title>
+    <title>Project Owner Login & Signup — DevConnect</title>
+    <meta name="description"
+        content="Sign in or create your Project Owner account on DevConnect. Start finding top talent today.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/auth-premium.css">
     <link rel="stylesheet" href="css/premium-global.css">
 </head>
 
-<body>
+<body class="owner-theme">
+    <!-- Back -->
     <a href="index.html" class="back-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M19 12H5M12 19L5 12L12 5" />
@@ -17,6 +23,7 @@
         Back to Home
     </a>
 
+    <!-- Floating BG circles -->
     <div class="area">
         <ul class="circles">
             <li></li>
@@ -32,169 +39,308 @@
         </ul>
     </div>
 
+    <!-- Main Card -->
     <div class="container" id="container">
-        <!-- Sign Up Form -->
+
+        <!-- ── SIGN UP FORM ── -->
         <div class="form-container sign-up-container">
-            <form id="signupForm">
+            <form id="signupForm" autocomplete="off">
                 <h1>Create Account</h1>
                 <span>Project Owner Registration</span>
+
                 <div class="input-group">
-                    <input type="text" id="signupName" placeholder="Full Name" required />
+                    <input type="text" id="signupName" placeholder="Full Name" required autocomplete="off" />
                 </div>
                 <div class="input-group">
-                    <input type="email" id="signupEmail" placeholder="Email" required />
+                    <input type="email" id="signupEmail" placeholder="Email Address" required autocomplete="off" />
                 </div>
                 <div class="input-group">
-                    <input type="password" id="signupPassword" placeholder="Password" required minlength="6" />
+                    <input type="password" id="signupPassword" placeholder="Password (min 6 chars)" required
+                        minlength="6" autocomplete="new-password" />
+                    <div class="strength-bar">
+                        <div class="strength-fill" id="strengthFill"></div>
+                    </div>
                 </div>
                 <div class="input-group">
-                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required />
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required
+                        autocomplete="new-password" />
                 </div>
-                <button type="submit" class="liquid-btn">Sign Up</button>
+
+                <button type="submit" id="signupBtn">
+                    <span id="signupBtnText">Create Owner Account</span>
+                </button>
+
                 <div class="mobile-switch">
                     Already have an account? <span id="toSignInMobile">Sign In</span>
                 </div>
             </form>
         </div>
 
-        <!-- Sign In Form -->
+        <!-- ── SIGN IN FORM ── -->
         <div class="form-container sign-in-container">
-            <form id="loginForm">
-                <h1>Sign In</h1>
-                <span>Project Owner Login</span>
+            <form id="loginForm" autocomplete="off">
+                <h1>Welcome Back</h1>
+                <span>Sign in to your Owner account</span>
+
                 <div class="input-group">
-                    <input type="email" id="loginEmail" placeholder="Email" required />
+                    <input type="email" id="loginEmail" placeholder="Email Address" required autocomplete="off" />
                 </div>
                 <div class="input-group">
-                    <input type="password" id="loginPassword" placeholder="Password" required />
+                    <input type="password" id="loginPassword" placeholder="Password" required
+                        autocomplete="current-password" />
                 </div>
-                <a href="javascript:void(0)" onclick="showForgotPasswordModal()"
-                    style="color: var(--text-secondary); font-size: 13px; text-decoration: none; margin: 10px 0;">Forgot
-                    your password?</a>
-                <button type="submit" class="liquid-btn">Sign In</button>
+
+                <a href="javascript:void(0)"
+                    style="color:#f59e0b;font-size:0.82rem;align-self:flex-end;margin:6px 0;text-decoration:none;">Forgot
+                    password?</a>
+
+                <button type="submit" id="loginBtn">
+                    <span id="loginBtnText">Sign In</span>
+                </button>
+
                 <div class="mobile-switch">
                     Don't have an account? <span id="toSignUpMobile">Sign Up</span>
                 </div>
             </form>
         </div>
 
-        <!-- Overlay -->
+        <!-- ── OVERLAY ── -->
         <div class="overlay-container">
             <div class="overlay">
+
+                <!-- Left overlay (shown when sign-up mode → prompt to go back to sign-in) -->
                 <div class="overlay-panel overlay-left">
+                    <div class="overlay-icon">🏢</div>
                     <h1>Welcome Back!</h1>
-                    <p>To keep connected with us please login with your account info</p>
+                    <p>Already have an Owner account? Sign in and manage your projects.</p>
+
+                    <!-- REAL DATA: Freelancers available for owners to browse -->
+                    <div class="overlay-social-proof">
+                        <div class="overlay-avatars" id="leftAvatars">
+                            <!-- filled by JS -->
+                        </div>
+                        <p><span id="leftFreelancerCount">0</span> freelancers active</p>
+                    </div>
+
+                    <div class="overlay-stats">
+                        <div class="overlay-stat">
+                            <h3 id="stat-freelancers-left">0</h3>
+                            <p>Freelancers</p>
+                        </div>
+                        <div class="overlay-stat">
+                            <h3 id="stat-projects-left">0</h3>
+                            <p>Projects</p>
+                        </div>
+                    </div>
+
+                    <div class="overlay-tags">
+                        <span class="overlay-tag">🌐 Web Apps</span>
+                        <span class="overlay-tag">📱 Mobile</span>
+                        <span class="overlay-tag">🎨 Design</span>
+                        <span class="overlay-tag">🤖 AI/ML</span>
+                    </div>
+
                     <button class="ghost" id="signIn">Sign In</button>
                 </div>
+
+                <!-- Right overlay (shown on sign-in page → prompt to create account) -->
                 <div class="overlay-panel overlay-right">
+                    <div class="overlay-icon">💼</div>
                     <h1>Hello, Project Owner!</h1>
-                    <p>Enter your details and start finding top talent today</p>
-                    <button class="ghost" id="signUp">Sign Up</button>
+                    <p>Post your requirement and discover talented freelancers ready to build.</p>
+
+                    <!-- REAL DATA: Active freelancers available -->
+                    <div class="overlay-social-proof">
+                        <div class="overlay-avatars" id="rightAvatars">
+                            <!-- filled by JS -->
+                        </div>
+                        <p><span id="rightFreelancerCount">0</span> freelancers ready</p>
+                    </div>
+
+                    <div class="overlay-stats">
+                        <div class="overlay-stat">
+                            <h3 id="stat-freelancers-r">0</h3>
+                            <p>Freelancers</p>
+                        </div>
+                        <div class="overlay-stat">
+                            <h3 id="stat-projects-r">0</h3>
+                            <p>Active Projects</p>
+                        </div>
+                        <div class="overlay-stat">
+                            <h3>98%</h3>
+                            <p>Satisfaction</p>
+                        </div>
+                    </div>
+
+                    <div class="overlay-tags">
+                        <span class="overlay-tag">📋 Post Requirements</span>
+                        <span class="overlay-tag">🔍 Browse Talent</span>
+                        <span class="overlay-tag">💬 Direct Chat</span>
+                    </div>
+
+                    <button class="ghost" id="signUp">Create Account</button>
                 </div>
+
             </div>
         </div>
-    </div>
+    </div><!-- /container -->
 
     <script src="js/storage.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/premium-global.js"></script>
     <script>
+        /* ── Panel toggle ── */
+        const container = document.getElementById('container');
         const signUpButton = document.getElementById('signUp');
         const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
-        const toSignUpMobile = document.getElementById('toSignUpMobile');
-        const toSignInMobile = document.getElementById('toSignInMobile');
+        const toSignUpMob = document.getElementById('toSignUpMobile');
+        const toSignInMob = document.getElementById('toSignInMobile');
 
-        // Redirect if already authenticated
         redirectIfAuthenticated();
 
-        // Toggle Panels
-        signUpButton.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
+        signUpButton.addEventListener('click', () => container.classList.add('right-panel-active'));
+        signInButton.addEventListener('click', () => container.classList.remove('right-panel-active'));
+        toSignUpMob?.addEventListener('click', () => container.classList.add('right-panel-active'));
+        toSignInMob?.addEventListener('click', () => container.classList.remove('right-panel-active'));
+
+        if (new URLSearchParams(window.location.search).get('action') === 'signup')
+            container.classList.add('right-panel-active');
+
+        /* ══════════════════════════════════════════
+           REAL DATA from localStorage
+           Owner page → shows: active freelancers, active projects
+        ══════════════════════════════════════════ */
+        function loadRealStats() {
+            const users = getUsers();
+            const freelancers = users.filter(u => u.role === 'freelancer');
+            const projects = getClientRequirements();
+
+            const fCount = freelancers.length;
+            const pCount = projects.length;
+
+            /* Animated count-up */
+            animateCount('stat-freelancers-left', fCount);
+            animateCount('stat-projects-left', pCount);
+            animateCount('stat-freelancers-r', fCount);
+            animateCount('stat-projects-r', pCount);
+
+            /* Social proof text */
+            document.getElementById('leftFreelancerCount').textContent = fCount;
+            document.getElementById('rightFreelancerCount').textContent = fCount;
+
+            /* Avatars — show initials of real freelancers */
+            const recent = freelancers.slice(-3);
+
+            function buildAvatars(container, list) {
+                container.innerHTML = '';
+                if (list.length === 0) {
+                    ['–', '–', '–'].forEach(() => {
+                        const d = document.createElement('div');
+                        d.className = 'overlay-avatar';
+                        d.textContent = '–';
+                        container.appendChild(d);
+                    });
+                    return;
+                }
+                list.forEach(u => {
+                    const d = document.createElement('div');
+                    d.className = 'overlay-avatar';
+                    const initials = u.name
+                        ? u.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+                        : u.email.slice(0, 2).toUpperCase();
+                    d.textContent = initials;
+                    container.appendChild(d);
+                });
+            }
+
+            buildAvatars(document.getElementById('leftAvatars'), recent);
+            buildAvatars(document.getElementById('rightAvatars'), recent);
+        }
+
+        function animateCount(elId, target) {
+            const el = document.getElementById(elId);
+            if (!el) return;
+            const step = Math.max(1, Math.ceil(target / 40));
+            let current = 0;
+            const timer = setInterval(() => {
+                current = Math.min(current + step, target);
+                el.textContent = current;
+                if (current >= target) clearInterval(timer);
+            }, 25);
+        }
+
+        loadRealStats();
+
+        /* ── Password Strength ── */
+        const pwInput = document.getElementById('signupPassword');
+        const fill = document.getElementById('strengthFill');
+        pwInput.addEventListener('input', () => {
+            const v = pwInput.value;
+            let score = 0;
+            if (v.length >= 6) score++;
+            if (v.length >= 10) score++;
+            if (/[A-Z]/.test(v)) score++;
+            if (/[0-9]/.test(v)) score++;
+            if (/[^A-Za-z0-9]/.test(v)) score++;
+            const colors = ['#ef4444', '#f97316', '#f59e0b', '#22c55e', '#10b981'];
+            fill.style.width = (score * 20) + '%';
+            fill.style.background = colors[score - 1] || 'transparent';
         });
 
-        signInButton.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-
-        toSignUpMobile.addEventListener('click', () => {
-            container.classList.add("right-panel-active");
-        });
-
-        toSignInMobile.addEventListener('click', () => {
-            container.classList.remove("right-panel-active");
-        });
-
-        // Login Logic
+        /* ── Login logic ── */
         document.getElementById('loginForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim().toLowerCase();
             const password = document.getElementById('loginPassword').value;
-            const role = 'client';
+            const btn = document.getElementById('loginBtn');
+            const text = document.getElementById('loginBtnText');
 
-            const users = getUsers();
-            const user = users.find(u => u.email === email && u.password === password && u.role === role);
+            btn.disabled = true; text.textContent = 'Signing in…';
 
-            if (!user) {
-                // Check if user exists with different role
-                const anyUser = users.find(u => u.email === email && u.password === password);
-                if (anyUser) {
-                    const displayRole = anyUser.role === 'client' ? 'Project Owner' : 'Freelancer';
-                    showToast(`You are registered as a ${displayRole}. Please login on the correct page!`);
-                } else {
-                    showToast('Invalid email or password!');
+            setTimeout(() => {
+                const users = getUsers();
+                const user = users.find(u => u.email === email && u.password === password && u.role === 'client');
+                if (!user) {
+                    const any = users.find(u => u.email === email && u.password === password);
+                    showToast(any ? 'You are a Freelancer — use Freelancer Login.' : 'Invalid email or password!');
+                    btn.disabled = false; text.textContent = 'Sign In';
+                    return;
                 }
-                return;
-            }
-
-            login(user);
-            window.location.href = 'owner-dashboard.html';
+                login(user); text.textContent = '✓ Success!';
+                setTimeout(() => window.location.href = 'owner-dashboard.html', 600);
+            }, 800);
         });
 
-        // Signup Logic
+        /* ── Signup logic ── */
         document.getElementById('signupForm').addEventListener('submit', function (e) {
             e.preventDefault();
             const name = document.getElementById('signupName').value.trim();
             const email = document.getElementById('signupEmail').value.trim().toLowerCase();
             const password = document.getElementById('signupPassword').value;
-            const confirmPass = document.getElementById('confirmPassword').value;
-            const role = 'client';
+            const confirm = document.getElementById('confirmPassword').value;
+            const btn = document.getElementById('signupBtn');
+            const text = document.getElementById('signupBtnText');
 
-            if (password !== confirmPass) {
-                showToast('Passwords do not match!');
-                return;
-            }
+            if (password !== confirm) return showToast('Passwords do not match!');
 
-            const users = getUsers();
-            if (users.find(u => u.email === email)) {
-                showToast('Email already registered!');
-                return;
-            }
+            btn.disabled = true; text.textContent = 'Creating account…';
 
-            const newUser = {
-                id: generateId(),
-                name,
-                email,
-                password,
-                role,
-                createdAt: new Date().toISOString()
-            };
-
-            users.push(newUser);
-            saveUsers(users);
-            login(newUser);
-            window.location.href = 'owner-dashboard.html';
+            setTimeout(() => {
+                const users = getUsers();
+                if (users.find(u => u.email === email)) {
+                    showToast('Email already registered!');
+                    btn.disabled = false; text.textContent = 'Create Owner Account';
+                    return;
+                }
+                const newUser = { id: generateId(), name, email, password, role: 'client', createdAt: new Date().toISOString() };
+                users.push(newUser); saveUsers(users); login(newUser);
+                text.textContent = '✓ Registered!';
+                setTimeout(() => window.location.href = 'owner-dashboard.html', 600);
+            }, 900);
         });
-
-        // Auto-switch based on URL
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('action') === 'signup') {
-            container.classList.add("right-panel-active");
-        }
     </script>
-    <!-- Liquid Filter -->
-    <svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg"
-        version="1.1">
+
+    <svg style="visibility:hidden;position:absolute" width="0" height="0">
         <defs>
             <filter id="goo">
                 <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />

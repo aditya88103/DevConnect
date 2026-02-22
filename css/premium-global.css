@@ -30,10 +30,6 @@
     transition: width 0.3s, height 0.3s;
 }
 
-body:hover .cursor-glow {
-    opacity: 1;
-}
-
 /* Scroll Reveal */
 .reveal {
     opacity: 0;
@@ -46,7 +42,7 @@ body:hover .cursor-glow {
     transform: translateY(0);
 }
 
-/* Float Animation */
+/* Float */
 @keyframes floatPremium {
 
     0%,
@@ -88,7 +84,7 @@ body:hover .cursor-glow {
     opacity: 1;
 }
 
-/* Liquid Button Effect */
+/* Liquid Button */
 .liquid-btn {
     position: relative;
     overflow: hidden;
@@ -114,35 +110,7 @@ body:hover .cursor-glow {
     height: 300%;
 }
 
-/* Background Particles (Animated SVGs) */
-.premium-bg-decor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.5;
-}
-
-.premium-bg-decor circle {
-    animation: pulse 4s ease-in-out infinite alternate;
-}
-
-@keyframes pulse {
-    from {
-        opacity: 0.2;
-        transform: scale(1) translate(0, 0);
-    }
-
-    to {
-        opacity: 0.4;
-        transform: scale(1.1) translate(20px, 20px);
-    }
-}
-
-/* Interactive Feature Cards */
+/* Feature Cards */
 .feature-card {
     transition: all 0.5s var(--liquid-ease);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -155,7 +123,6 @@ body:hover .cursor-glow {
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
 }
 
-/* Card Hover Scale */
 .hover-scale {
     transition: transform 0.4s var(--liquid-ease);
 }
@@ -164,7 +131,7 @@ body:hover .cursor-glow {
     transform: scale(1.05);
 }
 
-/* Custom Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -178,11 +145,7 @@ body:hover .cursor-glow {
     border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-gradient);
-}
-
-/* Premium Toast Notification */
+/* Toast */
 .toast-container {
     position: fixed;
     top: 20px;
@@ -239,13 +202,10 @@ body:hover .cursor-glow {
     }
 }
 
-/* Premium Modal for Forgot Password */
+/* Modal */
 .modal-overlay-p {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     display: flex;
@@ -293,114 +253,294 @@ body:hover .cursor-glow {
     margin-top: 10px;
 }
 
-/* Premium Falling Man Logout Button - Absolute Version */
-.logoutButton {
-    --figure-duration: 1000;
-    --door-duration: 400;
-    --button-hover: rgba(255, 255, 255, 0.1);
-    --button-active: rgba(255, 255, 255, 0.15);
-    --text-color: #fff;
-    --icon-color: #fff;
-    --transition: 0.3s;
+/* ================================================================
+   PREMIUM LOGOUT BUTTON — Colored Gate + Falling Person Animation
+   
+   IDLE    : Beautiful colored indigo gate is CLOSED
+   HOVER   : Gate SWINGS OPEN in 3D, person appears inside
+   CLICK   : Person FALLS DOWN, spinning — smooth gravity fall
+             The figure ESCAPES BELOW the button (overflow:visible)
+   ================================================================ */
 
+.logoutButton {
+    /* --- timing (unitless ms for calc()) --- */
+    --figure-duration: 2200;
+    /* ms — SLOW gravity fall    */
+    --door-duration: 450;
+    /* ms — door swing duration  */
+
+    /* --- reset --- */
     appearance: none;
     outline: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(10px);
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px 24px;
-    border-radius: 14px;
-    position: relative;
-    overflow: hidden;
-    transition: all var(--transition);
-    color: var(--text-color);
     font-family: inherit;
+    border: none;
+    background: transparent;
+    color: #fff;
+
+    /* --- layout: [text] [gate] --- */
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px 10px 20px;
+
+    /* --- pill shape --- */
+    border-radius: 100px;
+    position: relative;
+    /* !! overflow: VISIBLE — lets the figure fall OUTSIDE the button !! */
+    overflow: visible;
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    transition: transform 0.2s ease;
+
+    /* Isolate stacking so figure doesn't leak under other elements */
+    isolation: isolate;
+}
+
+/* Background pill — clipped separately via border-radius so the figure can escape */
+.logoutButton::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 100px;
+    /* pill shape — clips bg only, not children */
+    background: linear-gradient(135deg, #1e2d45 0%, #1a2035 100%);
+    border: 1.5px solid rgba(255, 255, 255, 0.10);
+    box-shadow:
+        0 2px 14px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: -1;
+    /* sits behind text + doorway */
+}
+
+.logoutButton:hover::before {
+    background: linear-gradient(135deg, #263352 0%, #1e2d48 100%);
+    border-color: rgba(99, 102, 241, 0.55);
+    box-shadow:
+        0 4px 22px rgba(99, 102, 241, 0.25),
+        0 2px 8px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 .logoutButton:hover {
-    background: var(--button-hover);
-    border-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
 }
 
-.logoutButton .button-text {
-    font-size: 14px;
-    font-weight: 600;
-    transition: transform 0.4s ease, opacity 0.3s;
+.logoutButton:active {
+    transform: scale(0.97) translateY(0);
 }
 
-.logoutButton .doorway {
-    position: relative;
-    width: 20px;
-    height: 22px;
-    margin-right: 12px;
-    perspective: 100px;
+/* Red flash the moment someone clicks */
+.logoutButton.falling::before {
+    background: linear-gradient(135deg, #3f0a0a 0%, #2d0707 100%) !important;
+    border-color: rgba(239, 68, 68, 0.6) !important;
+    box-shadow:
+        0 0 28px rgba(239, 68, 68, 0.30),
+        0 2px 8px rgba(0, 0, 0, 0.5) !important;
+    transition-duration: 0.12s;
 }
 
-.logoutButton .doorway svg {
-    display: block;
-    width: 20px;
-    height: 22px;
-}
-
-.logoutButton .door {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transform-origin: 0 50%;
-    transition: transform calc(var(--door-duration) * 1ms) ease;
-    z-index: 2;
-    fill: var(--icon-color);
-}
-
-.logoutButton .figure {
-    position: absolute;
-    bottom: 4px;
-    right: 1px;
-    width: 12px;
-    height: 14px;
-    fill: var(--icon-color);
-    z-index: 1;
-    opacity: 0;
-    transition: transform calc(var(--figure-duration) * 1ms) linear,
-        bottom calc(var(--figure-duration) * 1ms) cubic-bezier(0.7, 0.1, 1, 1) 100ms,
-        opacity calc(var(--figure-duration) * 0.25ms) linear calc(var(--figure-duration) * 0.75ms);
-}
-
-/* Falling Animation State - Exactly Matched to Reference Screenshot */
 .logoutButton.falling {
-    background: #ff4b2b;
-    border-color: #ff4b2b;
     pointer-events: none;
 }
 
+/* --- Text --- */
+.logoutButton .button-text {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+    white-space: nowrap;
+    transition:
+        opacity calc(var(--door-duration) * 0.7ms) ease,
+        transform calc(var(--door-duration) * 0.7ms) ease;
+}
+
 .logoutButton.falling .button-text {
-    transform: scale(0.8);
     opacity: 0;
+    transform: translateX(-5px);
 }
 
+/* ─── DOORWAY — the gate frame ──────────────────────────────────
+   Shows the dark "room inside" when the door swings open.
+   overflow: visible so figure can fall out downward.
+──────────────────────────────────────────────────────────────── */
+.logoutButton .doorway {
+    position: relative;
+    z-index: 2;
+    width: 26px;
+    height: 32px;
+    flex-shrink: 0;
+
+    /* Gate frame visual */
+    background: #060d1f;
+    /* dark room — visible when door opens */
+    border: 2.5px solid #6366f1;
+    /* indigo gate frame                   */
+    border-radius: 5px 5px 2px 2px;
+    box-shadow:
+        0 0 14px rgba(99, 102, 241, 0.65),
+        /* outer purple glow  */
+        inset 0 0 10px rgba(99, 102, 241, 0.28);
+    /* inner room glow */
+
+    /* 3-D perspective for door swing — hinges on LEFT edge */
+    perspective: 120px;
+    perspective-origin: 0% 50%;
+
+    /* !! overflow: VISIBLE — figure must fall OUTSIDE doorway downward !! */
+    overflow: visible;
+}
+
+/* ─── DOOR — the colored panel that swings open ────────────────
+   Filled indigo with glass panels and door knob.
+──────────────────────────────────────────────────────────────── */
+.logoutButton .door {
+    display: block;
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+
+    fill: #6366f1;
+    /* 🔵 INDIGO — the gate colour */
+    transform-origin: 0% 50%;
+    /* hinge on LEFT edge  */
+    z-index: 2;
+
+    transition: transform calc(var(--door-duration) * 1ms) cubic-bezier(0.4, 0, 0.2, 1);
+    filter: drop-shadow(0 0 4px rgba(99, 102, 241, 0.6));
+}
+
+/* Hover + falling: gate SWINGS OPEN in 3D */
+.logoutButton:hover .door,
 .logoutButton.falling .door {
-    transform: rotateY(-115deg);
+    transform: rotateY(-130deg);
 }
 
-.logoutButton.falling .figure {
-    animation: spin 1000ms infinite linear;
-    bottom: -1080px;
+/* ─── FIGURE — the walking person ──────────────────────────────
+   IDLE    : hidden behind the closed door
+   HOVER   : door opens → figure becomes VISIBLE in the dark room
+   FALLING : figure FALLS DOWN *out of* button — visible in the page
+──────────────────────────────────────────────────────────────── */
+.logoutButton .figure {
+    display: block;
+    position: absolute;
+
+    /* Centre inside 26px doorway */
+    right: 5px;
+    bottom: 6px;
+    width: 14px;
+    height: 17px;
+
+    fill: #c7d2fe;
+    /* light indigo — visible against dark room bg */
+    z-index: 10;
+    /* above door & doorway so it can escape */
+
     opacity: 0;
+    /* hidden in idle state */
+
+    /* Transitions for hover appear */
+    transition:
+        opacity calc(var(--door-duration) * 1ms) linear calc(var(--door-duration) * 0.3ms),
+        bottom calc(var(--figure-duration) * 1ms) cubic-bezier(0.55, 0.05, 0.9, 0.9) 80ms;
 }
 
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
+/* HOVER: figure fades in as the door opens */
+.logoutButton:hover .figure {
+    opacity: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CLICK →  .falling class added by auth.js
+   
+   The figure FALLS DOWN *below* the button — visible in the page!
+   1. `bottom: -180px`  — falls well below the button boundary
+   2. `cubic-bezier(0.55,0.05,0.9,0.9)` — starts slow, gravity accelerates
+   3. `animation: logoutSpin` — spins SLOWLY (2.2s per rotation)
+   4. `opacity: 0` — fades out near end of fall
+   5. `z-index: 999` — renders on top of page content while falling
+═══════════════════════════════════════════════════════════════ */
+.logoutButton.falling .figure {
+    right: 5px;
+    bottom: -180px;
+    /* falls FAR below the button — visible outside! */
+    opacity: 0;
+
+    /* Slow spin while falling */
+    animation: logoutSpin calc(var(--figure-duration) * 1ms) ease-in-out 1 forwards;
+
+    transition:
+        /* fall: full SLOW duration with gravity easing, 80ms delay */
+        bottom calc(var(--figure-duration) * 1ms) cubic-bezier(0.25, 0.1, 0.85, 1.0) 80ms,
+        /* fade: starts at 70% of fall duration, lasts 30% */
+        opacity calc(var(--figure-duration) * 0.30ms) linear calc(var(--figure-duration) * 0.70ms);
+
+    z-index: 999;
+    /* renders above page content while falling */
+    fill: #ef4444;
+    /* figure turns red when falling — dramatic! */
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.5));
+}
+
+/* Spin keyframe — SLOW, 1 full rotation per fall */
+@keyframes logoutSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
     }
 
-    to {
-        transform: rotate(360deg);
+    30% {
+        transform: rotate(120deg) scale(1.15);
     }
+
+    70% {
+        transform: rotate(260deg) scale(1.05);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(0.8);
+    }
+}
+
+/* ─── Extra: glowing footsteps effect on the doorway floor ─── */
+.logoutButton.falling .doorway::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 4px;
+    background: radial-gradient(ellipse, rgba(239, 68, 68, 0.55) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: shadowFall calc(var(--figure-duration) * 1ms) ease-in 80ms 1 forwards;
+}
+
+@keyframes shadowFall {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    15% {
+        opacity: 0.8;
+    }
+
+    80% {
+        opacity: 0.3;
+        transform: translateX(-50%) scaleX(2.5);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Safety net — theme toggle removed */
+.theme-toggle {
+    display: none !important;
 }

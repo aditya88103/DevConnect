@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DevConnect - Connect Freelancers with Real Projects</title>
+    <meta name="description"
+        content="DevConnect is the premier platform connecting skilled freelancers with project owners. Find talent, post projects, and build amazing things together.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="css/landing.css">
     <link rel="stylesheet" href="css/premium-global.css">
 </head>
@@ -12,24 +17,9 @@
 <body>
     <div class="scroll-progress"></div>
     <div class="cursor-glow"></div>
-    <div class="premium-bg-decor">
-        <svg width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none">
-            <circle cx="100" cy="100" r="150" fill="url(#grad1)" opacity="0.1" />
-            <circle cx="900" cy="800" r="200" fill="url(#grad2)" opacity="0.1" />
-            <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#667eea" />
-                    <stop offset="100%" style="stop-color:transparent" />
-                </linearGradient>
-                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#764ba2" />
-                    <stop offset="100%" style="stop-color:transparent" />
-                </linearGradient>
-            </defs>
-        </svg>
-    </div>
+
     <!-- Sticky Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="logo">
                 <svg viewBox="0 0 40 40" fill="none">
@@ -48,12 +38,15 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#role-selection">Join Now</a></li>
             </ul>
-            <a href="login.html" class="nav-login-btn">Login</a>
+            <a href="login.html" class="nav-login-btn">Login →</a>
         </div>
     </nav>
 
-    <!-- Hero Section with Animated Background -->
+    <!-- ══════════════════════════════════════
+         HERO SECTION
+    ══════════════════════════════════════ -->
     <section id="home" class="hero-section">
         <div class="animated-bg">
             <div class="blob blob-1"></div>
@@ -62,22 +55,149 @@
             <div class="particle"></div>
             <div class="particle"></div>
             <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
         </div>
 
-        <div class="hero-content reveal">
-            <h1 class="hero-title typing-text" data-text="Connect Freelancers with Real Projects">Connect Freelancers
-                with Real Projects</h1>
-            <p class="hero-subtitle">A platform where freelancers and professionals meet Project Owners to build
-                websites, apps, and more.</p>
-            <div class="cta-group">
-                <a href="#role-selection" class="cta-button liquid-btn magnetic-btn">Explore Platform</a>
+        <!-- Floating grid/mesh overlay -->
+        <div class="hero-mesh"></div>
+
+        <div class="hero-content">
+            <!-- Badge -->
+            <div class="hero-badge fade-up">
+                <span class="badge-dot"></span>
+                Now Live — India's Freelance Marketplace
+            </div>
+
+            <h1 class="hero-title fade-up">
+                Connect <span class="gradient-text">Freelancers</span><br>
+                with Real Projects
+            </h1>
+
+            <p class="hero-subtitle fade-up">
+                A platform where skilled professionals meet project owners.<br>
+                Build websites, apps, designs, and more — together.
+            </p>
+
+            <div class="cta-group fade-up">
+                <a href="#role-selection" class="cta-button liquid-btn">
+                    <span>Get Started Free</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#features" class="cta-outline">See How It Works</a>
+            </div>
+
+            <!-- Floating avatar stack -->
+            <div class="hero-social-proof fade-up">
+                <div class="avatar-stack">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul&backgroundColor=6366f1" alt="User"
+                        class="avatar">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Priya&backgroundColor=a855f7" alt="User"
+                        class="avatar">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Amit&backgroundColor=3b82f6" alt="User"
+                        class="avatar">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Neha&backgroundColor=10b981" alt="User"
+                        class="avatar">
+                </div>
+                <p><strong>500+</strong> freelancers already onboard</p>
+            </div>
+        </div>
+
+        <!-- Hero image cards floating on the right -->
+        <div class="hero-visual">
+            <div class="hero-card hero-card-1 float-element">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=300&q=80"
+                    alt="Developer working" class="hero-card-img">
+                <div class="hero-card-info">
+                    <div class="hero-card-avatar" style="background: linear-gradient(135deg,#6366f1,#a855f7)">RS</div>
+                    <div>
+                        <p class="card-name">Rahul S.</p>
+                        <p class="card-role">Full Stack Dev</p>
+                    </div>
+                    <div class="card-badge">⭐ 4.9</div>
+                </div>
+            </div>
+
+            <div class="hero-card hero-card-2 float-element" style="animation-delay: 2s">
+                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=300&q=80"
+                    alt="Team collaboration" class="hero-card-img">
+                <div class="hero-card-info">
+                    <div class="hero-card-avatar" style="background: linear-gradient(135deg,#f59e0b,#ef4444)">PK</div>
+                    <div>
+                        <p class="card-name">Priya K.</p>
+                        <p class="card-role">UI/UX Designer</p>
+                    </div>
+                    <div class="card-badge">⭐ 5.0</div>
+                </div>
+            </div>
+
+            <!-- Floating stat pill -->
+            <div class="hero-pill pill-1">
+                <span class="pill-icon">🚀</span>
+                <div>
+                    <p class="pill-num">200+</p>
+                    <p class="pill-label">Active Projects</p>
+                </div>
+            </div>
+
+            <div class="hero-pill pill-2">
+                <span class="pill-icon">✅</span>
+                <div>
+                    <p class="pill-num">98%</p>
+                    <p class="pill-label">Success Rate</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-hint">
+            <div class="scroll-line"></div>
+            <span>Scroll</span>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         STATS SECTION
+    ══════════════════════════════════════ -->
+    <section class="stats-section">
+        <div class="stats-inner">
+            <div class="stat-item" data-count="500" data-suffix="+">
+                <div class="stat-icon">👨‍💻</div>
+                <h3 class="stat-number" id="stat-0">0</h3>
+                <p>Expert Freelancers</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item" data-count="200" data-suffix="+">
+                <div class="stat-icon">📁</div>
+                <h3 class="stat-number" id="stat-1">0</h3>
+                <p>Live Projects</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item" data-count="98" data-suffix="%">
+                <div class="stat-icon">⭐</div>
+                <h3 class="stat-number" id="stat-2">0</h3>
+                <p>Satisfaction Rate</p>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+                <div class="stat-icon">🛡️</div>
+                <h3 class="stat-number">24/7</h3>
+                <p>Active Support</p>
             </div>
         </div>
     </section>
 
-    <!-- Platform Details Section -->
+    <!-- ══════════════════════════════════════
+         FEATURES SECTION
+    ══════════════════════════════════════ -->
     <section id="features" class="features-section">
-        <h2 class="section-title">Why Choose DevConnect?</h2>
+        <div class="section-header">
+            <span class="section-tag">Why DevConnect?</span>
+            <h2 class="section-title">Everything you need<br>to succeed</h2>
+        </div>
+
         <div class="features-grid">
             <div class="feature-card reveal glass-glow">
                 <div class="feature-icon">
@@ -88,21 +208,22 @@
                 </div>
                 <h3>Verified Profiles</h3>
                 <p>All freelancers and project owners are verified for authenticity and quality.</p>
+                <div class="feature-link">Learn more →</div>
             </div>
 
-            <div class="feature-card fade-in">
+            <div class="feature-card reveal glass-glow">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="11" cy="11" r="8" />
-                        <path d="M21 21l-4.35-4.35" />
-                        <path d="M11 8v6l4 2" />
+                        <path d="M21 21l-4.35-4.35M11 8v6l3 2" />
                     </svg>
                 </div>
                 <h3>Skill-based Discovery</h3>
                 <p>Find freelancers by specific skills, experience level, and project type.</p>
+                <div class="feature-link">Learn more →</div>
             </div>
 
-            <div class="feature-card fade-in">
+            <div class="feature-card reveal glass-glow">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -110,26 +231,119 @@
                 </div>
                 <h3>Built-in Messaging</h3>
                 <p>Chat directly with freelancers or project owners in real-time.</p>
+                <div class="feature-link">Learn more →</div>
             </div>
 
-            <div class="feature-card fade-in">
+            <div class="feature-card reveal glass-glow">
                 <div class="feature-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                        <rect x="5" y="2" width="14" height="20" rx="2" />
                         <line x1="12" y1="18" x2="12.01" y2="18" />
                     </svg>
                 </div>
                 <h3>Mobile Friendly</h3>
                 <p>Access the platform seamlessly from any device, anywhere.</p>
+                <div class="feature-link">Learn more →</div>
             </div>
         </div>
     </section>
 
-    <!-- Role Selection Section -->
+    <!-- ══════════════════════════════════════
+         SHOWCASE / PHOTO SECTION
+    ══════════════════════════════════════ -->
+    <section class="showcase-section">
+        <div class="section-header">
+            <span class="section-tag">Real Work, Real People</span>
+            <h2 class="section-title">Talented freelancers<br>ready to build</h2>
+        </div>
+
+        <div class="showcase-grid">
+            <div class="showcase-card reveal" style="--delay: 0s">
+                <div class="showcase-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Freelancer"
+                        class="showcase-img">
+                    <div class="showcase-overlay">
+                        <span class="showcase-skill">Web Development</span>
+                    </div>
+                </div>
+                <div class="showcase-info">
+                    <h4>Ananya Singh</h4>
+                    <p>React · Node.js · MongoDB</p>
+                    <div class="showcase-rating">⭐⭐⭐⭐⭐ <span>5.0</span></div>
+                </div>
+            </div>
+
+            <div class="showcase-card reveal" style="--delay: 0.1s">
+                <div class="showcase-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Freelancer"
+                        class="showcase-img">
+                    <div class="showcase-overlay">
+                        <span class="showcase-skill">UI/UX Design</span>
+                    </div>
+                </div>
+                <div class="showcase-info">
+                    <h4>Arjun Mehta</h4>
+                    <p>Figma · Adobe XD · Prototyping</p>
+                    <div class="showcase-rating">⭐⭐⭐⭐⭐ <span>4.9</span></div>
+                </div>
+            </div>
+
+            <div class="showcase-card reveal" style="--delay: 0.2s">
+                <div class="showcase-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&q=80" alt="Freelancer"
+                        class="showcase-img">
+                    <div class="showcase-overlay">
+                        <span class="showcase-skill">Mobile Apps</span>
+                    </div>
+                </div>
+                <div class="showcase-info">
+                    <h4>Priya Sharma</h4>
+                    <p>Flutter · React Native · Swift</p>
+                    <div class="showcase-rating">⭐⭐⭐⭐⭐ <span>4.8</span></div>
+                </div>
+            </div>
+
+            <div class="showcase-card reveal" style="--delay: 0.3s">
+                <div class="showcase-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" alt="Freelancer"
+                        class="showcase-img">
+                    <div class="showcase-overlay">
+                        <span class="showcase-skill">Backend Dev</span>
+                    </div>
+                </div>
+                <div class="showcase-info">
+                    <h4>Rohan Gupta</h4>
+                    <p>Python · Django · PostgreSQL</p>
+                    <div class="showcase-rating">⭐⭐⭐⭐⭐ <span>5.0</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="showcase-cta-wrap">
+            <a href="browse-freelancers.html" class="cta-button liquid-btn">
+                <span>Browse All Freelancers</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         ROLE SELECTION
+    ══════════════════════════════════════ -->
     <section id="role-selection" class="role-section">
-        <h2 class="section-title">Choose Your Role</h2>
+        <div class="section-header">
+            <span class="section-tag">Get Started</span>
+            <h2 class="section-title">Choose your role</h2>
+        </div>
+
         <div class="role-cards-container">
             <div class="role-card freelancer-role reveal glass-glow">
+                <div class="role-card-bg">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=60" alt=""
+                        class="role-bg-img">
+                </div>
                 <div class="role-badge">For Freelancers</div>
                 <div class="role-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -139,6 +353,11 @@
                 <h3>Freelancer</h3>
                 <p>Show your skills, projects, and portfolio.</p>
                 <p>Get contacted by Project Owners.</p>
+                <ul class="role-perks">
+                    <li>✓ Free profile setup</li>
+                    <li>✓ Direct client messages</li>
+                    <li>✓ Portfolio showcase</li>
+                </ul>
                 <div class="role-buttons">
                     <a href="freelancer-auth.html?action=signup" class="primary-btn">Create Freelancer Account</a>
                     <a href="freelancer-auth.html" class="secondary-btn">Freelancer Login</a>
@@ -146,8 +365,13 @@
             </div>
 
             <div class="role-card owner-role reveal glass-glow">
-                <div class="role-badge">For Project Owners</div>
-                <div class="role-icon">
+                <div class="role-card-bg">
+                    <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=60" alt=""
+                        class="role-bg-img">
+                </div>
+                <div class="role-badge" style="background: linear-gradient(135deg, #f59e0b, #ef4444)">For Project Owners
+                </div>
+                <div class="role-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444)">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
                         <circle cx="9" cy="7" r="4" />
@@ -158,93 +382,110 @@
                 <h3>Project Owner</h3>
                 <p>Post your requirement and find skilled freelancers.</p>
                 <p>Chat and finalize your project easily.</p>
+                <ul class="role-perks">
+                    <li>✓ Post unlimited requirements</li>
+                    <li>✓ Browse curated talent</li>
+                    <li>✓ Real-time messaging</li>
+                </ul>
                 <div class="role-buttons">
-                    <a href="owner-auth.html?action=signup" class="primary-btn">Create Owner Account</a>
-                    <a href="owner-auth.html" class="secondary-btn">Owner Login</a>
+                    <a href="owner-auth.html?action=signup" class="primary-btn"
+                        style="background: linear-gradient(135deg, #f59e0b, #ef4444)">Create Owner Account</a>
+                    <a href="owner-auth.html" class="secondary-btn" style="color: #f59e0b; border-color: #f59e0b">Owner
+                        Login</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Grid (New Detail Section) -->
-    <section class="stats-grid-section reveal">
-        <div class="stats-grid">
-            <div class="stat-box">
-                <h4 class="stat-count">500+</h4>
-                <p>Expert Freelancers</p>
-            </div>
-            <div class="stat-box">
-                <h4 class="stat-count">200+</h4>
-                <p>Live Projects</p>
-            </div>
-            <div class="stat-box">
-                <h4 class="stat-count">98%</h4>
-                <p>Satisfaction Rate</p>
-            </div>
-            <div class="stat-box">
-                <h4 class="stat-count">24/7</h4>
-                <p>Active Support</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Detailed Benefits Section -->
-    <section class="benefits-section reveal">
-        <h2 class="section-title">Everything You Need to Scale</h2>
-        <div class="benefits-grid">
-            <div class="benefit-card glass-glow">
-                <div class="benefit-icon">🚀</div>
-                <h3>Fast Turnaround</h3>
-                <p>Get your project started within hours, not weeks. Our matching algorithm finds the best fit
-                    instantly.</p>
-            </div>
-            <div class="benefit-card glass-glow">
-                <div class="benefit-icon">🛡️</div>
-                <h3>Secure Collaboration</h3>
-                <p>Built-in chat and project tracking ensure that communication and milestones are always clear.</p>
-            </div>
-            <div class="benefit-card glass-glow">
-                <div class="benefit-icon">💎</div>
-                <h3>Top Quality</h3>
-                <p>Access a curated pool of talent ranging from UI/UX designers to heavy-duty backend engineers.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- How it Works Section -->
+    <!-- ══════════════════════════════════════
+         HOW IT WORKS
+    ══════════════════════════════════════ -->
     <section id="how-it-works" class="how-it-works-section">
-        <h2 class="section-title">How It Works</h2>
+        <div class="section-header">
+            <span class="section-tag">Simple Process</span>
+            <h2 class="section-title">How It Works</h2>
+        </div>
+
         <div class="steps-container">
             <div class="step-card fade-in">
                 <div class="step-number">1</div>
+                <div class="step-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1586282391129-76a6df230234?w=300&q=80"
+                        alt="Create profile">
+                </div>
                 <h3>Create Profile</h3>
                 <p>Sign up as a Freelancer or Project Owner and complete your profile with skills and requirements.</p>
             </div>
 
+            <div class="step-connector"></div>
+
             <div class="step-card fade-in">
                 <div class="step-number">2</div>
+                <div class="step-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=300&q=80"
+                        alt="Explore and Connect">
+                </div>
                 <h3>Explore and Connect</h3>
                 <p>Browse profiles, discover talent, or get discovered by project owners looking for your skills.</p>
             </div>
 
+            <div class="step-connector"></div>
+
             <div class="step-card fade-in">
                 <div class="step-number">3</div>
+                <div class="step-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=300&q=80"
+                        alt="Chat and Build">
+                </div>
                 <h3>Chat and Build</h3>
                 <p>Connect through our messaging system, discuss project details, and start building together.</p>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- ══════════════════════════════════════
+         BENEFITS STRIP
+    ══════════════════════════════════════ -->
+    <section class="benefits-section">
+        <div class="section-header">
+            <span class="section-tag">Why Us</span>
+            <h2 class="section-title">Everything you need to scale</h2>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card glass-glow reveal">
+                <div class="benefit-icon">🚀</div>
+                <h3>Fast Turnaround</h3>
+                <p>Get your project started within hours, not weeks. Our platform connects you instantly.</p>
+            </div>
+            <div class="benefit-card glass-glow reveal">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Secure Collaboration</h3>
+                <p>Built-in chat and project tracking ensure communication and milestones are always clear.</p>
+            </div>
+            <div class="benefit-card glass-glow reveal">
+                <div class="benefit-icon">💎</div>
+                <h3>Top Quality</h3>
+                <p>Access a curated pool of talent from UI/UX designers to backend engineers.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         TESTIMONIALS
+    ══════════════════════════════════════ -->
     <section class="testimonials-section">
-        <h2 class="section-title">What Our Users Say</h2>
+        <div class="section-header">
+            <span class="section-tag">Testimonials</span>
+            <h2 class="section-title">What our users say</h2>
+        </div>
         <div class="testimonials-grid">
             <div class="testimonial-card fade-in">
-                <div class="quote-icon">"</div>
-                <p class="testimonial-text">DevConnect helped me land my first freelance project. The platform is easy
-                    to use and the project owners are genuine!</p>
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"DevConnect helped me land my first freelance project. The platform is easy
+                    to use and the project owners are genuine!"</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">RS</div>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul2&backgroundColor=6366f1"
+                        class="author-img" alt="Rahul">
                     <div>
                         <h4>Rahul Sharma</h4>
                         <p>Full Stack Freelancer</p>
@@ -253,11 +494,12 @@
             </div>
 
             <div class="testimonial-card fade-in">
-                <div class="quote-icon">"</div>
-                <p class="testimonial-text">I found the perfect freelancer for my startup within days. The skill-based
-                    search made it so easy!</p>
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"I found the perfect freelancer for my startup within days. The skill-based
+                    search made it so easy!"</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">PK</div>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Priya2&backgroundColor=a855f7"
+                        class="author-img" alt="Priya">
                     <div>
                         <h4>Priya Kapoor</h4>
                         <p>Startup Founder</p>
@@ -266,17 +508,36 @@
             </div>
 
             <div class="testimonial-card fade-in">
-                <div class="quote-icon">"</div>
-                <p class="testimonial-text">As a freelancer, this platform gave me real-world experience. Highly
-                    recommend
-                    for beginners!</p>
+                <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+                <p class="testimonial-text">"As a freelancer, this platform gave me real-world experience. Highly
+                    recommend for beginners!"</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">AV</div>
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Amit2&backgroundColor=3b82f6"
+                        class="author-img" alt="Amit">
                     <div>
                         <h4>Amit Verma</h4>
                         <p>Freelance Web Designer</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════
+         CTA BANNER
+    ══════════════════════════════════════ -->
+    <section class="cta-banner">
+        <div class="cta-banner-inner">
+            <h2>Ready to start building?</h2>
+            <p>Join thousands of freelancers and project owners on DevConnect today.</p>
+            <div class="cta-group">
+                <a href="freelancer-auth.html?action=signup" class="cta-button liquid-btn">
+                    <span>Join as Freelancer</span>
+                </a>
+                <a href="owner-auth.html?action=signup" class="cta-button"
+                    style="background: linear-gradient(135deg,#f59e0b,#ef4444)">
+                    <span>Post a Project</span>
+                </a>
             </div>
         </div>
     </section>
@@ -330,12 +591,45 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 DevConnect. All rights reserved. Built with ❤️ for freelancers and project owners.</p>
+            <p>© 2026 DevConnect. All rights reserved. Built with ❤️ for freelancers and project owners.</p>
         </div>
     </footer>
 
     <script src="js/landing.js"></script>
     <script src="js/premium-global.js"></script>
+    <script>
+        // Animated counter
+        function animateCounter(el, target, suffix) {
+            let current = 0;
+            const step = target / 60;
+            const timer = setInterval(() => {
+                current = Math.min(current + step, target);
+                el.textContent = Math.floor(current) + suffix;
+                if (current >= target) clearInterval(timer);
+            }, 25);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    const items = document.querySelectorAll('.stat-item[data-count]');
+                    items.forEach((item, i) => {
+                        const el = item.querySelector('.stat-number');
+                        animateCounter(el, +item.dataset.count, item.dataset.suffix);
+                    });
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) observer.observe(statsSection);
+
+        // fade-up animation on hero elements
+        document.querySelectorAll('.fade-up').forEach((el, i) => {
+            el.style.animationDelay = `${i * 0.15}s`;
+        });
+    </script>
 </body>
 
 </html>

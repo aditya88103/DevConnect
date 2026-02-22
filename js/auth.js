@@ -89,13 +89,16 @@ if (typeof window !== 'undefined') {
             btn.addEventListener('click', function (e) {
                 e.preventDefault();
 
-                // Add the falling class to trigger CSS animation
+                // Don't double-trigger
+                if (btn.classList.contains('falling')) return;
+
+                // Add .falling — gate stays open, person falls spinning
                 btn.classList.add('falling');
 
-                // Wait for the animation to complete (1.2s in CSS) then logout
+                // 1000ms fall + 100ms delay + 250ms fade + 150ms buffer = 1500ms
                 setTimeout(() => {
                     logout();
-                }, 1200);
+                }, 1500);
             });
         });
     });
